@@ -1,20 +1,20 @@
 export interface Article {
-  slug: string;
-  title: string;
-  date: string;
-  summary: string;
-  tags: string[];
-  content: string;
+    slug: string;
+    title: string;
+    date: string;
+    summary: string;
+    tags: string[];
+    content: string;
 }
 
 export const articles: Article[] = [
-  {
-    slug: "ecs-architecture-in-games",
-    title: "Why ECS Architecture Changed How I Think About Games",
-    date: "2026-02-15",
-    summary: "A deep dive into Entity Component System architecture and why it's a game-changer for performance and flexibility.",
-    tags: ["Architecture", "ECS", "Performance"],
-    content: `
+    {
+        slug: "ecs-architecture-in-games",
+        title: "Why ECS Architecture Changed How I Think About Games",
+        date: "2026-02-15",
+        summary: "A deep dive into Entity Component System architecture and why it's a game-changer for performance and flexibility.",
+        tags: ["Architecture", "ECS", "Performance"],
+        content: `
 # Why ECS Architecture Changed How I Think About Games
 
 When I first started writing game code, everything was inheritance-based. A \`Player\` extended \`Character\`, which extended \`Entity\`. It worked — until it didn't.
@@ -59,14 +59,14 @@ The beauty? Adding "flying" is just adding a component. No inheritance needed. C
 
 ECS isn't a silver bullet, but for anything beyond a simple game jam project, it's my default architecture now.
 `,
-  },
-  {
-    slug: "shader-optimization-tricks",
-    title: "5 Shader Optimization Tricks I Wish I Knew Earlier",
-    date: "2026-01-20",
-    summary: "Practical GPU optimization techniques that made a real difference in my rendering pipeline.",
-    tags: ["Shaders", "GPU", "Optimization"],
-    content: `
+    },
+    {
+        slug: "shader-optimization-tricks",
+        title: "5 Shader Optimization Tricks I Wish I Knew Earlier",
+        date: "2026-01-20",
+        summary: "Practical GPU optimization techniques that made a real difference in my rendering pipeline.",
+        tags: ["Shaders", "GPU", "Optimization"],
+        content: `
 # 5 Shader Optimization Tricks I Wish I Knew Earlier
 
 After spending months profiling my custom renderer, here are the GPU optimization techniques that actually moved the needle.
@@ -108,14 +108,14 @@ Move expensive calculations to compute shaders that run before your main render 
 
 These aren't revolutionary ideas, but applying them consistently improved my frame times by ~40%.
 `,
-  },
-  {
-    slug: "procedural-generation-lessons",
-    title: "Lessons from Building a Procedural Dungeon Generator",
-    date: "2025-12-08",
-    summary: "What I learned building a dungeon generator from scratch — the wins, the pitfalls, and the surprising math.",
-    tags: ["Procedural", "Algorithms", "Game Design"],
-    content: `
+    },
+    {
+        slug: "procedural-generation-lessons",
+        title: "Lessons from Building a Procedural Dungeon Generator",
+        date: "2025-12-08",
+        summary: "What I learned building a dungeon generator from scratch — the wins, the pitfalls, and the surprising math.",
+        tags: ["Procedural", "Algorithms", "Game Design"],
+        content: `
 # Lessons from Building a Procedural Dungeon Generator
 
 Procedural generation is one of those things that sounds simple until you actually try it. "Just place some rooms and connect them" — if only.
@@ -148,5 +148,5 @@ Binary Space Partitioning turned out to be the most reliable starting point. Rec
 
 The generator now produces varied, playable dungeons with consistent quality. The secret was less "clever algorithms" and more "boring validation passes."
 `,
-  },
+    },
 ];
