@@ -1,3 +1,4 @@
+import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Calendar, ArrowLeft } from "lucide-react";
@@ -6,6 +7,17 @@ import Footer from "@/components/Footer";
 import { articles } from "@/data/articles";
 
 const Blog = () => {
+    const [activeTag, setActiveTag] = useState<string | null>(null);
+
+    const allTags = useMemo(
+        () => [...new Set(articles.flatMap((a) => a.tags))].sort(),
+        []
+    );
+
+    const filtered = activeTag
+        ? articles.filter((a) => a.tags.includes(activeTag))
+        : articles;
+
     return (
         <div className="min-h-screen bg-background">
             <Navbar />
@@ -22,11 +34,37 @@ const Blog = () => {
                     <h1 className="text-4xl font-mono font-bold mb-2">
                         <span className="text-primary">~/</span>blog
                     </h1>
-                    <p className="text-muted-foreground mb-12">All articles and notes.</p>
+                    <p className="text-muted-foreground mb-8">All articles and notes.</p>
+
+                    <div className="flex flex-wrap gap-2 mb-12">
+                        <button
+                            onClick={() => setActiveTag(null)}
+                            className={`text-xs font-mono px-3 py-1.5 rounded-full border transition-colors ${
+                                activeTag === null
+                                    ? "bg-primary text-primary-foreground border-primary"
+                                    : "bg-secondary text-secondary-foreground border-border hover:border-primary/40"
+                            }`}
+                        >
+                            All
+                        </button>
+                        {allTags.map((tag) => (
+                            <button
+                                key={tag}
+                                onClick={() => setActiveTag(activeTag === tag ? null : tag)}
+                                className={`text-xs font-mono px-3 py-1.5 rounded-full border transition-colors ${
+                                    activeTag === tag
+                                        ? "bg-primary text-primary-foreground border-primary"
+                                        : "bg-secondary text-secondary-foreground border-border hover:border-primary/40"
+                                }`}
+                            >
+                                {tag}
+                            </button>
+                        ))}
+                    </div>
                 </motion.div>
 
                 <div className="space-y-4">
-                    {articles.map((article, i) => (
+                    {filtered.map((article, i) => (
                         <motion.div
                             key={article.slug}
                             initial={{ opacity: 0, y: 15 }}

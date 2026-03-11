@@ -1,9 +1,21 @@
+import { useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, Calendar } from "lucide-react";
 import { articles } from "@/data/articles";
 
 const BlogPreviewSection = () => {
+    const [activeTag, setActiveTag] = useState<string | null>(null);
+
+    const allTags = useMemo(
+        () => [...new Set(articles.flatMap((a) => a.tags))].sort(),
+        []
+    );
+
+    const filtered = activeTag
+        ? articles.filter((a) => a.tags.includes(activeTag))
+        : articles;
+
     return (
         <section className="py-24 border-t border-border">
             <div className="container px-6">
@@ -12,7 +24,7 @@ const BlogPreviewSection = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5 }}
-                    className="flex items-end justify-between mb-12"
+                    className="flex items-end justify-between mb-8"
                 >
                     <div>
                         <h2 className="text-3xl font-mono font-bold mb-2">
@@ -28,8 +40,34 @@ const BlogPreviewSection = () => {
                     </Link>
                 </motion.div>
 
+                <div className="flex flex-wrap gap-2 mb-8">
+                    <button
+                        onClick={() => setActiveTag(null)}
+                        className={`text-xs font-mono px-3 py-1.5 rounded-full border transition-colors ${
+                            activeTag === null
+                                ? "bg-primary text-primary-foreground border-primary"
+                                : "bg-secondary text-secondary-foreground border-border hover:border-primary/40"
+                        }`}
+                    >
+                        All
+                    </button>
+                    {allTags.map((tag) => (
+                        <button
+                            key={tag}
+                            onClick={() => setActiveTag(activeTag === tag ? null : tag)}
+                            className={`text-xs font-mono px-3 py-1.5 rounded-full border transition-colors ${
+                                activeTag === tag
+                                    ? "bg-primary text-primary-foreground border-primary"
+                                    : "bg-secondary text-secondary-foreground border-border hover:border-primary/40"
+                            }`}
+                        >
+                            {tag}
+                        </button>
+                    ))}
+                </div>
+
                 <div className="space-y-4">
-                    {articles.slice(0, 3).map((article, i) => (
+                    {filtered.slice(0, 3).map((article, i) => (
                         <motion.div
                             key={article.slug}
                             initial={{ opacity: 0, x: -20 }}
