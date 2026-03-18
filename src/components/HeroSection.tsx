@@ -1,60 +1,88 @@
 import { motion } from "framer-motion";
 import { Github, Linkedin, Mail } from "lucide-react";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import StarfieldBackground from "@/components/StarfieldBackground";
 
 const HeroSection = () => {
     return (
-        <section className="relative min-h-screen flex items-center justify-center grid-bg overflow-hidden">
-            {/* Gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-b from-background via-background/90 to-background pointer-events-none" />
+        <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+            {/* Starfield */}
+            <StarfieldBackground />
+            {/* Gradient overlay — lighter so stars show through */}
+            <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/50 to-background pointer-events-none" />
 
             <div className="container relative z-10 px-6 py-32">
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.7, ease: "easeOut" }}
-                    className="max-w-3xl"
-                >
-                    <p className="font-mono text-sm text-primary mb-4 tracking-widest uppercase">
-                        Game Programmer
-                    </p>
+                <div className="flex flex-col-reverse md:flex-row items-center md:items-center gap-12 md:gap-16">
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.7, ease: "easeOut" }}
+                        className="max-w-3xl flex-1"
+                    >
+                        <p className="font-mono text-sm text-primary mb-4 tracking-widest uppercase">
+                            Game Programmer
+                        </p>
 
-                    <h1 className="text-4xl sm:text-5xl md:text-6xl font-mono font-bold leading-tight mb-6">
-                        Hello, I'm{" "}
-                        <span className="text-primary glow-text">Your Name</span>
-                        <span className="inline-block w-[3px] h-[1em] bg-primary ml-1 align-middle animate-cursor-blink" />
-                    </h1>
+                        <h1 className="text-4xl sm:text-5xl md:text-6xl font-mono font-bold leading-tight mb-6">
+                            Hello, I'm{" "}
+                            <span className="text-primary glow-text">Your Name</span>
+                            <span className="inline-block w-[3px] h-[1em] bg-primary ml-1 align-middle animate-cursor-blink" />
+                        </h1>
 
-                    <p className="text-lg text-muted-foreground max-w-xl mb-8 leading-relaxed">
-                        I build games and interactive experiences. Passionate about real-time rendering,
-                        gameplay systems, and pushing pixels to their limits. Currently exploring the
-                        intersection of performance and player experience.
-                    </p>
+                        <p className="text-lg text-muted-foreground max-w-xl mb-8 leading-relaxed">
+                            I build games and interactive experiences. Passionate about real-time rendering,
+                            gameplay systems, and pushing pixels to their limits. Currently exploring the
+                            intersection of performance and player experience.
+                        </p>
 
-                    <div className="flex items-center gap-4">
-                        <a
-                            href="https://github.com"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="p-3 rounded-lg border border-border bg-secondary/50 text-muted-foreground hover:text-primary hover:border-primary/50 hover:glow-border transition-all"
-                        >
-                            <Github size={20} />
-                        </a>
-                        <a
-                            href="https://linkedin.com"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="p-3 rounded-lg border border-border bg-secondary/50 text-muted-foreground hover:text-primary hover:border-primary/50 hover:glow-border transition-all"
-                        >
-                            <Linkedin size={20} />
-                        </a>
-                        <a
-                            href="mailto:hello@example.com"
-                            className="p-3 rounded-lg border border-border bg-secondary/50 text-muted-foreground hover:text-primary hover:border-primary/50 hover:glow-border transition-all"
-                        >
-                            <Mail size={20} />
-                        </a>
-                    </div>
-                </motion.div>
+                        <div className="flex items-center gap-4">
+                            <a
+                                href="https://github.com"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="p-3 rounded-lg border border-border bg-secondary/50 text-muted-foreground hover:text-primary hover:border-primary/50 hover:glow-border transition-all"
+                            >
+                                <Github size={20} />
+                            </a>
+                            <a
+                                href="https://linkedin.com"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="p-3 rounded-lg border border-border bg-secondary/50 text-muted-foreground hover:text-primary hover:border-primary/50 hover:glow-border transition-all"
+                            >
+                                <Linkedin size={20} />
+                            </a>
+                            <a
+                                href="mailto:hello@example.com"
+                                className="p-3 rounded-lg border border-border bg-secondary/50 text-muted-foreground hover:text-primary hover:border-primary/50 hover:glow-border transition-all"
+                            >
+                                <Mail size={20} />
+                            </a>
+                        </div>
+                    </motion.div>
+
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+                        className="shrink-0 relative"
+                    >
+                        {/* Orbital ring */}
+                        <div className="absolute inset-[-12px] md:inset-[-14px] rounded-full border border-primary/20 animate-[spin_12s_linear_infinite]">
+                            <span className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 h-2 w-2 rounded-full bg-primary shadow-[0_0_8px_2px_hsl(var(--primary)/0.6)]" />
+                            <span className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 h-1.5 w-1.5 rounded-full bg-primary/60 shadow-[0_0_6px_2px_hsl(var(--primary)/0.4)]" />
+                        </div>
+                        {/* Counter-rotating ring */}
+                        <div className="absolute inset-[-24px] md:inset-[-28px] rounded-full border border-primary/10 animate-[spin_20s_linear_infinite_reverse]">
+                            <span className="absolute top-1/2 right-0 translate-x-1/2 -translate-y-1/2 h-1.5 w-1.5 rounded-full bg-primary/50 shadow-[0_0_6px_2px_hsl(var(--primary)/0.3)]" />
+                            <span className="absolute top-1/2 left-0 -translate-x-1/2 -translate-y-1/2 h-1 w-1 rounded-full bg-primary/40 shadow-[0_0_4px_1px_hsl(var(--primary)/0.2)]" />
+                        </div>
+                        <Avatar className="h-44 w-44 md:h-52 md:w-52 ring-2 ring-primary/30 animate-[glow-pulse_3s_ease-in-out_infinite]">
+                            <AvatarImage src="/images/profile.jpg" alt="Profile photo" />
+                            <AvatarFallback className="bg-secondary text-primary font-mono text-4xl">YN</AvatarFallback>
+                        </Avatar>
+                    </motion.div>
+                </div>
             </div>
         </section>
     );

@@ -6,6 +6,8 @@ import { projects } from "@/data/projects";
 const ProjectsSection = () => {
     return (
         <section className="py-24 relative">
+            {/* Fade-in from hero */}
+            <div className="absolute -top-32 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-background pointer-events-none" />
             <div className="container px-6">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
