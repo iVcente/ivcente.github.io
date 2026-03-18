@@ -1,41 +1,75 @@
-import { motion } from "framer-motion";
+import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, ExternalLink, Github } from "lucide-react";
+import { motion } from "framer-motion";
+import { ArrowLeft, Github, ExternalLink } from "lucide-react";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import { projects } from "@/data/projects";
 
-const ProjectsSection = () => {
+const Projects = () => {
+    const [activeTag, setActiveTag] = useState<string | null>(null);
+
+    const allTags = useMemo(
+        () => [...new Set(projects.flatMap((p) => p.tags))].sort(),
+        []
+    );
+
+    const filtered = activeTag
+        ? projects.filter((p) => p.tags.includes(activeTag))
+        : projects;
+
     return (
-        <section className="py-24 relative">
-            <div className="container px-6">
+        <div className="min-h-screen bg-background">
+            <Navbar />
+            <main className="container px-6 pt-28 pb-24">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
+                    animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
-                    className="flex items-end justify-between mb-12"
                 >
-                    <div>
-                        <h2 className="text-3xl font-mono font-bold mb-2">
-                            <span className="text-primary">~/</span>projects
-                        </h2>
-                        <p className="text-muted-foreground">Things I've built and worked on.</p>
-                    </div>
-                    <Link
-                        to="/projects"
-                        className="hidden sm:flex items-center gap-2 text-sm font-mono text-primary hover:underline"
-                    >
-                        All projects <ArrowRight size={14} />
+                    <Link to="/" className="inline-flex items-center gap-2 text-sm font-mono text-muted-foreground hover:text-primary transition-colors mb-8">
+                        <ArrowLeft size={14} /> Back
                     </Link>
+
+                    <h1 className="text-4xl font-mono font-bold mb-2">
+                        <span className="text-primary">~/</span>projects
+                    </h1>
+                    <p className="text-muted-foreground mb-8">All projects and experiments.</p>
+
+                    <div className="flex flex-wrap gap-2 mb-12">
+                        <button
+                            onClick={() => setActiveTag(null)}
+                            className={`text-xs font-mono px-3 py-1.5 rounded-full border transition-colors ${
+                                activeTag === null
+                                    ? "bg-primary text-primary-foreground border-primary"
+                                    : "bg-secondary text-secondary-foreground border-border hover:border-primary/40"
+                            }`}
+                        >
+                            All
+                        </button>
+                        {allTags.map((tag) => (
+                            <button
+                                key={tag}
+                                onClick={() => setActiveTag(activeTag === tag ? null : tag)}
+                                className={`text-xs font-mono px-3 py-1.5 rounded-full border transition-colors ${
+                                    activeTag === tag
+                                        ? "bg-primary text-primary-foreground border-primary"
+                                        : "bg-secondary text-secondary-foreground border-border hover:border-primary/40"
+                                }`}
+                            >
+                                {tag}
+                            </button>
+                        ))}
+                    </div>
                 </motion.div>
 
                 <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                    {projects.slice(0, 3).map((project, i) => (
+                    {filtered.map((project, i) => (
                         <motion.div
                             key={project.slug}
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.4, delay: i * 0.1 }}
+                            initial={{ opacity: 0, y: 15 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.4, delay: i * 0.08 }}
                         >
                             <Link
                                 to={`/projects/${project.slug}`}
@@ -80,16 +114,10 @@ const ProjectsSection = () => {
                         </motion.div>
                     ))}
                 </div>
-
-                <Link
-                    to="/projects"
-                    className="sm:hidden flex items-center justify-center gap-2 mt-8 text-sm font-mono text-primary hover:underline"
-                >
-                    All projects <ArrowRight size={14} />
-                </Link>
-            </div>
-        </section>
+            </main>
+            <Footer />
+        </div>
     );
 };
 
-export default ProjectsSection;
+export default Projects;
