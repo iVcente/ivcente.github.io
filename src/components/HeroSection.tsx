@@ -20,24 +20,22 @@ const HeroSection = () => {
                         className="max-w-3xl flex-1"
                     >
                         <p className="font-mono text-sm text-primary mb-4 tracking-widest uppercase">
-                            Game Programmer
+                            Gameplay Programmer
                         </p>
 
                         <h1 className="text-4xl sm:text-5xl md:text-6xl font-mono font-bold leading-tight mb-6">
-                            Hello, I'm{" "}
-                            <span className="text-primary glow-text">Your Name</span>
+                            Hi! I'm{" "}
+                            <span className="text-primary glow-text">Vicente Danzmann</span>
                             <span className="inline-block w-[3px] h-[1em] bg-primary ml-1 align-middle animate-cursor-blink" />
                         </h1>
 
                         <p className="text-lg text-muted-foreground max-w-xl mb-8 leading-relaxed">
-                            I build games and interactive experiences. Passionate about real-time rendering,
-                            gameplay systems, and pushing pixels to their limits. Currently exploring the
-                            intersection of performance and player experience.
+                            I'm a computer scientist with a strong passion for game development. I love making games and building the systems that bring them to life!
                         </p>
 
                         <div className="flex items-center gap-4">
                             <a
-                                href="https://github.com"
+                                href="https://github.com/iVcente"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="p-3 rounded-lg border border-border bg-secondary/50 text-muted-foreground hover:text-primary hover:border-primary/50 hover:glow-border transition-all"
@@ -45,7 +43,7 @@ const HeroSection = () => {
                                 <Github size={20} />
                             </a>
                             <a
-                                href="https://linkedin.com"
+                                href="https://linkedin.com/in/vicente-danzmann"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="p-3 rounded-lg border border-border bg-secondary/50 text-muted-foreground hover:text-primary hover:border-primary/50 hover:glow-border transition-all"
@@ -53,7 +51,7 @@ const HeroSection = () => {
                                 <Linkedin size={20} />
                             </a>
                             <a
-                                href="mailto:hello@example.com"
+                                href="mailto:ivcente@gmail.com"
                                 className="p-3 rounded-lg border border-border bg-secondary/50 text-muted-foreground hover:text-primary hover:border-primary/50 hover:glow-border transition-all"
                             >
                                 <Mail size={20} />

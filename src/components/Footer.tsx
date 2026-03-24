@@ -5,7 +5,7 @@ const Footer = () => (
                 © {new Date().getFullYear()} <span className="text-primary">{"<dev />"}</span>
             </p>
             <p className="text-xs text-muted-foreground">
-                Built with passion and too much coffee.
+                Built with the help of Lovable.
             </p>
         </div>
     </footer>
