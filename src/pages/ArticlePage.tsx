@@ -7,6 +7,7 @@ import { ArrowLeft, Calendar } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { articles } from "@/data/articles";
+import { formatDate } from "@/lib/utils";
 
 const ArticlePage = () => {
     const { slug } = useParams<{ slug: string }>();
@@ -31,7 +32,7 @@ const ArticlePage = () => {
                         <div className="flex items-center gap-4 flex-wrap mb-4">
                             <span className="flex items-center gap-1.5 text-xs text-muted-foreground font-mono">
                                 <Calendar size={12} />
-                                {article.date}
+                                {formatDate(article.date)}
                             </span>
                             {article.tags.map((tag) => (
                                 <span key={tag} className="text-xs font-mono px-2 py-0.5 rounded bg-secondary text-secondary-foreground">

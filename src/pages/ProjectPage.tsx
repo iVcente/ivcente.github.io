@@ -7,6 +7,7 @@ import { ArrowLeft, Calendar, Github, ExternalLink, Users, Clock, Monitor, Play 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { projects } from "@/data/projects";
+import { formatDate } from "@/lib/utils";
 
 function getEmbedUrl(url: string): string | null {
     // YouTube
@@ -55,7 +56,7 @@ const ProjectPage = () => {
                     <div className="flex flex-wrap items-center gap-4 mb-6">
                         <span className="flex items-center gap-1.5 text-xs text-muted-foreground font-mono">
                             <Calendar size={12} />
-                            {project.date}
+                            {formatDate(project.date)}
                         </span>
                         {project.status && (
                             <span className="text-xs font-mono px-2 py-0.5 rounded bg-primary/20 text-primary">

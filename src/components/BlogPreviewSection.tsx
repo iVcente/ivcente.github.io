@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, Calendar } from "lucide-react";
 import { articles } from "@/data/articles";
+import { formatDate } from "@/lib/utils";
 
 const BlogPreviewSection = () => {
     const [activeTag, setActiveTag] = useState<string | null>(null);
@@ -90,7 +91,7 @@ const BlogPreviewSection = () => {
                                         <div className="flex items-center gap-4 flex-wrap">
                                             <span className="flex items-center gap-1.5 text-xs text-muted-foreground font-mono">
                                                 <Calendar size={12} />
-                                                {article.date}
+                                                {formatDate(article.date)}
                                             </span>
                                             {article.tags.map((tag) => (
                                                 <span key={tag} className="text-xs font-mono px-2 py-0.5 rounded bg-secondary text-secondary-foreground">

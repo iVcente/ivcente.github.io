@@ -5,6 +5,7 @@ import { Calendar, ArrowLeft } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { articles } from "@/data/articles";
+import { formatDate } from "@/lib/utils";
 
 const Blog = () => {
     const [activeTag, setActiveTag] = useState<string | null>(null);
@@ -82,7 +83,7 @@ const Blog = () => {
                                 <div className="flex items-center gap-4 flex-wrap">
                                     <span className="flex items-center gap-1.5 text-xs text-muted-foreground font-mono">
                                         <Calendar size={12} />
-                                        {article.date}
+                                        {formatDate(article.date)}
                                     </span>
                                     {article.tags.map((tag) => (
                                         <span key={tag} className="text-xs font-mono px-2 py-0.5 rounded bg-secondary text-secondary-foreground">
