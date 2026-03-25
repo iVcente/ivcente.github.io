@@ -1,7 +1,7 @@
 ---
 title: "Console Commands & Console Variables"
 date: "2026-03-24"
-summary: "Console Variables (CVars) and Console Commands (CCmds) are one of the many 'hidden' gems in Unreal Engine. Let's spread more the word about them!"
+summary: "Console Variables (CVars) and Console Commands (CCmds) are one of the many often overlooked gems in Unreal Engine. Let's spread more the word about them!"
 tags: ["Code"]
 ---
 
