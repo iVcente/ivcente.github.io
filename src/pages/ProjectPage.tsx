@@ -1,6 +1,8 @@
-    import { useParams, Link, Navigate } from "react-router-dom";
+import { useParams, Link, Navigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import ReactMarkdown from "react-markdown";
+import rehypeHighlight from "rehype-highlight";
+import "highlight.js/styles/atom-one-dark.min.css";
 import { ArrowLeft, Calendar, Github, ExternalLink, Users, Clock, Monitor, Play } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -159,7 +161,7 @@ const ProjectPage = () => {
                         prose-pre:bg-card prose-pre:border prose-pre:border-border
                         prose-li:text-muted-foreground
                     ">
-                        <ReactMarkdown>{project.content}</ReactMarkdown>
+                        <ReactMarkdown rehypePlugins={[rehypeHighlight]}>{project.content}</ReactMarkdown>
                     </article>
                 </motion.div>
             </main>
