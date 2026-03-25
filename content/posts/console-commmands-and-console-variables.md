@@ -93,7 +93,7 @@ namespace MyCCmds
 }
 ```
 
-### Command Doesn't Require Neither Current World Context nor Arguments List 
+### Command Doesn't Require Current World Context or Arguments List 
 
 ```cpp
 // SomeFile.cpp
@@ -132,7 +132,7 @@ You can also execute your CCmds on process startup as launch arguments:
 
 ##  Creating a Console Variable
 
-Console Variables are defined within a `.cpp` file, and usually inside a namespace. They can hold values of the following types: `int32`, `float`, `bool` and `FString` . You can define them using TAutoConsoleVariable or FAutoConsoleVariableRef -- their types will be deduced automatically.
+Console Variables are defined within a `.cpp` file, and usually inside a namespace. They can hold values of the following types: `int32`, `float`, `bool` and `FString` . You can define them using `TAutoConsoleVariable` or `FAutoConsoleVariableRef` -- their types will be deduced automatically.
 
 `TAutoConsoleVariable` is the preferred, safer, and feature-complete way to define CVars. Use it when you want the Console Variable to be managed, registered, and owned by the system. It:
 - Automatically registers the CVar by name;
@@ -178,11 +178,15 @@ namespace MyCVars
 
 Access `TAutoConsoleVariable` value with:
 ```cpp
+// SomeFile.cpp
+
 MyCVars::ExampleAutoConsoleVariable.GetValueOnGameThread()
 ```
 
-Access FAutoConsoleVariableRef value directly with (and also same as above):
+Access `FAutoConsoleVariableRef` value directly with (and also same as above):
 ```cpp
+// SomeFile.cpp
+
 MyCVars::bDebugSomething
 ```
 
