@@ -1,11 +1,9 @@
 import { useParams, Link, Navigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import ReactMarkdown from "react-markdown";
-import rehypeHighlight from "rehype-highlight";
-import "highlight.js/styles/tokyo-night-dark.min.css";
 import { ArrowLeft, Calendar, Github, ExternalLink, Users, Clock, Monitor, Play } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import MarkdownRenderer from "@/components/MarkdownRenderer";
 import { projects } from "@/data/projects";
 import { formatDate } from "@/lib/utils";
 
@@ -162,7 +160,7 @@ const ProjectPage = () => {
                         prose-pre:bg-card prose-pre:border prose-pre:border-border
                         prose-li:text-muted-foreground
                     ">
-                        <ReactMarkdown rehypePlugins={[rehypeHighlight]}>{project.content}</ReactMarkdown>
+                        <MarkdownRenderer content={project.content} />
                     </article>
                 </motion.div>
             </main>

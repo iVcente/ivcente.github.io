@@ -1,11 +1,9 @@
 import { useParams, Link, Navigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import ReactMarkdown from "react-markdown";
-import rehypeHighlight from "rehype-highlight";
-import "highlight.js/styles/tokyo-night-dark.min.css";
 import { ArrowLeft, Calendar } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import MarkdownRenderer from "@/components/MarkdownRenderer";
 import { articles } from "@/data/articles";
 import { formatDate } from "@/lib/utils";
 
@@ -43,7 +41,7 @@ const ArticlePage = () => {
                     </div>
 
                     <article className="prose prose-invert prose-headings:font-mono prose-headings:text-foreground prose-p:text-muted-foreground prose-a:text-primary prose-strong:text-foreground prose-code:text-primary prose-code:bg-secondary prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:before:content-none prose-code:after:content-none prose-pre:bg-card prose-pre:border prose-pre:border-border max-w-none">
-                        <ReactMarkdown rehypePlugins={[rehypeHighlight]}>{article.content}</ReactMarkdown>
+                        <MarkdownRenderer content={article.content} />
                     </article>
                 </motion.div>
             </main>

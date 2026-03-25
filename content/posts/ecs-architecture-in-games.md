@@ -41,10 +41,18 @@ fn movement_system(query: Query<(&mut Position, &Velocity)>) {
 
 The beauty? Adding "flying" is just adding a component. No inheritance needed. Cache-friendly data layout comes for free.
 
+> [!TIP] If you're coming from OOP, start by identifying your "hot loops" — those are your first systems.
+
+> [!WARNING] Don't over-decompose components. A `Position` with x/y is fine — you don't need separate `XCoord` and `YCoord` components.
+
+> [!COMMENT] I initially tried a hybrid approach mixing inheritance with ECS. It was a mess. Commit fully or don't bother.
+
 ## Takeaways
 
 - **Composition over inheritance** isn't just a buzzword — ECS proves it at scale
 - Data-oriented design leads to better cache utilization
 - Decoupling data from behavior makes systems testable and reusable
+
+> [!NOTE] If you want to try ECS in Rust, check out the Bevy engine — it has one of the best ECS implementations I've seen.
 
 ECS isn't a silver bullet, but for anything beyond a simple game jam project, it's my default architecture now.
