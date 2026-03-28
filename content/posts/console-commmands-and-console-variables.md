@@ -192,7 +192,7 @@ MyCVars::bDebugSomething
 
 ## Accessing a Console Variable Outside Its File Definition
 
-If you’d like to access the CVars outside of the file where they were defined, you can do the following:
+If you'd like to access the CVars outside of the file where they were defined, you can do the following:
 ```cpp
 //  AnyOtherFile.cpp 
 
@@ -259,7 +259,7 @@ void UseCVar()
 ```
 
 Blueprints can access the CVars values with the following functions:
-// TODO
+> [!CAUTION] TODO Add BP
 
 ##  Modifying a Console Variable Value
 
