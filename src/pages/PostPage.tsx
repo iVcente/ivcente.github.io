@@ -4,14 +4,14 @@ import { ArrowLeft, Calendar } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
-import { articles } from "@/data/articles";
+import { posts } from "@/data/posts";
 import { formatDate } from "@/lib/utils";
 
-const ArticlePage = () => {
+const PostPage = () => {
     const { slug } = useParams<{ slug: string }>();
-    const article = articles.find((a) => a.slug === slug);
+    const post = posts.find((a) => a.slug === slug);
 
-    if (!article) return <Navigate to="/blog" replace />;
+    if (!post) return <Navigate to="/posts" replace />;
 
     return (
         <div className="min-h-screen bg-background">
@@ -22,17 +22,17 @@ const ArticlePage = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5 }}
                 >
-                    <Link to="/blog" className="inline-flex items-center gap-2 text-sm font-mono text-muted-foreground hover:text-primary transition-colors mb-8">
-                        <ArrowLeft size={14} /> Back to blog
+                    <Link to="/posts" className="inline-flex items-center gap-2 text-sm font-mono text-muted-foreground hover:text-primary transition-colors mb-8">
+                        <ArrowLeft size={14} /> Back to Posts
                     </Link>
 
                     <div className="mb-8">
                         <div className="flex items-center gap-4 flex-wrap mb-4">
                             <span className="flex items-center gap-1.5 text-xs text-muted-foreground font-mono">
                                 <Calendar size={12} />
-                                {formatDate(article.date)}
+                                {formatDate(post.date)}
                             </span>
-                            {article.tags.map((tag) => (
+                            {post.tags.map((tag) => (
                                 <span key={tag} className="text-xs font-mono px-2 py-0.5 rounded bg-secondary text-secondary-foreground">
                                     {tag}
                                 </span>
@@ -41,7 +41,7 @@ const ArticlePage = () => {
                     </div>
 
                     <article className="prose prose-invert prose-headings:font-mono prose-headings:text-foreground prose-p:text-muted-foreground prose-a:text-primary prose-strong:text-foreground prose-code:text-primary prose-code:bg-secondary prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:before:content-none prose-code:after:content-none prose-pre:bg-card prose-pre:border prose-pre:border-border max-w-none">
-                        <MarkdownRenderer content={article.content} />
+                        <MarkdownRenderer content={post.content} />
                     </article>
                 </motion.div>
             </main>
@@ -50,4 +50,4 @@ const ArticlePage = () => {
     );
 };
 
-export default ArticlePage;
+export default PostPage;

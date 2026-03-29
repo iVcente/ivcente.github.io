@@ -1,4 +1,4 @@
-export interface Article {
+export interface Post {
     slug: string;
     title: string;
     date: string;
@@ -34,7 +34,7 @@ const postFiles = import.meta.glob("/content/posts/*.md", {
     import: "default",
 }) as Record<string, string>;
 
-export const articles: Article[] = Object.entries(postFiles)
+export const posts: Post[] = Object.entries(postFiles)
     .map(([path, raw]) => {
         const slug = path.split("/").pop()!.replace(/\.md$/, "");
         const { data, content } = parseFrontmatter(raw);
@@ -45,6 +45,6 @@ export const articles: Article[] = Object.entries(postFiles)
             summary: (data.summary as string) ?? "",
             tags: (data.tags as string[]) ?? [],
             content: content.trim(),
-        } as Article;
+        } as Post;
     })
     .sort((a, b) => (b.date > a.date ? 1 : -1));

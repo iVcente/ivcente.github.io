@@ -7,8 +7,8 @@ import { lazy, Suspense } from "react"
 import Loading from "./pages/Loading";
 
 const Index = lazy(() => import("./pages/Index"))
-const Blog = lazy(() => import("./pages/Blog"))
-const ArticlePage = lazy(() => import("./pages/ArticlePage"))
+const Posts = lazy(() => import("./pages/Posts"))
+const PostPage = lazy(() => import("./pages/PostPage"))
 const Projects = lazy(() => import("./pages/Projects"))
 const ProjectPage = lazy(() => import("./pages/ProjectPage"))
 const NotFound = lazy(() => import("./pages/NotFound"))
@@ -21,8 +21,8 @@ const App = () => (
             <Suspense fallback={<Loading />}>
                 <Routes>
                     <Route path="/" element={<Index />} />
-                    <Route path="/blog" element={<Blog />} />
-                    <Route path="/blog/:slug" element={<ArticlePage />} />
+                    <Route path="/posts" element={<Posts />} />
+                    <Route path="/posts/:slug" element={<PostPage />} />
                     <Route path="/projects" element={<Projects />} />
                     <Route path="/projects/:slug" element={<ProjectPage />} />
                     <Route path="*" element={<NotFound />} />

@@ -4,20 +4,20 @@ import { motion } from "framer-motion";
 import { Calendar, ArrowLeft } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { articles } from "@/data/articles";
+import { posts } from "@/data/posts";
 import { formatDate } from "@/lib/utils";
 
-const Blog = () => {
+const Posts = () => {
     const [activeTag, setActiveTag] = useState<string | null>(null);
 
     const allTags = useMemo(
-        () => [...new Set(articles.flatMap((a) => a.tags))].sort(),
+        () => [...new Set(posts.flatMap((a) => a.tags))].sort(),
         []
     );
 
     const filtered = activeTag
-        ? articles.filter((a) => a.tags.includes(activeTag))
-        : articles;
+        ? posts.filter((a) => a.tags.includes(activeTag))
+        : posts;
 
     return (
         <div className="min-h-screen bg-background">
@@ -33,9 +33,9 @@ const Blog = () => {
                     </Link>
 
                     <h1 className="text-4xl font-mono font-bold mb-2">
-                        <span className="text-primary">~/</span>blog
+                        <span className="text-primary">~/</span>posts
                     </h1>
-                    <p className="text-muted-foreground mb-8">All articles and notes.</p>
+                    <p className="text-muted-foreground mb-8">All notes, findings, and deep dives.</p>
 
                     <div className="flex flex-wrap gap-2 mb-12">
                         <button
@@ -65,27 +65,27 @@ const Blog = () => {
                 </motion.div>
 
                 <div className="space-y-4">
-                    {filtered.map((article, i) => (
+                    {filtered.map((post, i) => (
                         <motion.div
-                            key={article.slug}
+                            key={post.slug}
                             initial={{ opacity: 0, y: 15 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.4, delay: i * 0.08 }}
                         >
                             <Link
-                                to={`/blog/${article.slug}`}
+                                to={`/posts/${post.slug}`}
                                 className="group block rounded-lg border border-border bg-card p-6 hover:border-primary/40 hover:glow-border transition-all"
                             >
                                 <h2 className="font-mono font-semibold text-lg mb-2 group-hover:text-primary transition-colors">
-                                    {article.title}
+                                    {post.title}
                                 </h2>
-                                <p className="text-sm text-muted-foreground mb-3">{article.summary}</p>
+                                <p className="text-sm text-muted-foreground mb-3">{post.summary}</p>
                                 <div className="flex items-center gap-4 flex-wrap">
                                     <span className="flex items-center gap-1.5 text-xs text-muted-foreground font-mono">
                                         <Calendar size={12} />
-                                        {formatDate(article.date)}
+                                        {formatDate(post.date)}
                                     </span>
-                                    {article.tags.map((tag) => (
+                                    {post.tags.map((tag) => (
                                         <span key={tag} className="text-xs font-mono px-2 py-0.5 rounded bg-secondary text-secondary-foreground">
                                             {tag}
                                         </span>
@@ -101,4 +101,4 @@ const Blog = () => {
     );
 };
 
-export default Blog;
+export default Posts;

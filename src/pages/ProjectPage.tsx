@@ -35,7 +35,7 @@ const ProjectPage = () => {
                     transition={{ duration: 0.5 }}
                 >
                     <Link to="/projects" className="inline-flex items-center gap-2 text-sm font-mono text-muted-foreground hover:text-primary transition-colors mb-8">
-                        <ArrowLeft size={14} /> Back to projects
+                        <ArrowLeft size={14} /> Back to Projects
                     </Link>
 
                     {/* Hero cover */}

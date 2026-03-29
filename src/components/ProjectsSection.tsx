@@ -26,7 +26,7 @@ const ProjectsSection = () => {
                         to="/projects"
                         className="hidden sm:flex items-center gap-2 text-sm font-mono text-primary hover:underline"
                     >
-                        All projects <ArrowRight size={14} />
+                        All Projects <ArrowRight size={14} />
                     </Link>
                 </motion.div>
 
@@ -87,7 +87,7 @@ const ProjectsSection = () => {
                     to="/projects"
                     className="sm:hidden flex items-center justify-center gap-2 mt-8 text-sm font-mono text-primary hover:underline"
                 >
-                    All projects <ArrowRight size={14} />
+                    All Projects <ArrowRight size={14} />
                 </Link>
             </div>
         </section>
