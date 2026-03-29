@@ -24,13 +24,13 @@ const HeroSection = () => {
                         </p>
 
                         <h1 className="text-4xl sm:text-5xl md:text-6xl font-mono font-bold leading-tight mb-6">
-                            Hi! I'm{" "}
+                            {" "}
                             <span className="text-primary glow-text">Vicente Danzmann</span>
                             <span className="inline-block w-[3px] h-[1em] bg-primary ml-1 align-middle animate-cursor-blink" />
                         </h1>
 
                         <p className="text-lg text-muted-foreground max-w-xl mb-8 leading-relaxed">
-                            I'm a computer scientist with a strong passion for game development. I love making games and building the systems that bring them to life!
+                            Hi! I'm a computer scientist with a strong passion for game development. I love making games and building the systems that bring them to life!
                         </p>
 
                         <div className="flex items-center gap-4">
