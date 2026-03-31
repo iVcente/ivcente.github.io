@@ -77,8 +77,8 @@ const HeroSection = () => {
                             <span className="absolute top-1/2 left-0 -translate-x-1/2 -translate-y-1/2 h-1 w-1 rounded-full bg-primary/40 shadow-[0_0_4px_1px_hsl(var(--primary)/0.2)]" />
                         </div>
                         <Avatar className="h-44 w-44 md:h-52 md:w-52 ring-2 ring-primary/30 animate-[glow-pulse_3s_ease-in-out_infinite]">
-                            <AvatarImage src="/images/profile.jpg" alt="Profile photo" />
-                            <AvatarFallback className="bg-secondary text-primary font-mono text-4xl">YN</AvatarFallback>
+                            <AvatarImage src="/images/profile.jpg" alt="Profile Photo" />
+                            <AvatarFallback className="bg-secondary text-primary font-mono text-4xl">VD</AvatarFallback>
                         </Avatar>
                     </motion.div>
                 </div>
