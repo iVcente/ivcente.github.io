@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { Github, Linkedin, Mail } from "lucide-react";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { GrMailOption } from "react-icons/gr";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import StarfieldBackground from "@/components/StarfieldBackground";
 
@@ -40,7 +41,7 @@ const HeroSection = () => {
                                 rel="noopener noreferrer"
                                 className="p-3 rounded-lg border border-border bg-secondary/50 text-muted-foreground hover:text-primary hover:border-primary/50 hover:glow-border transition-all"
                             >
-                                <Github size={20} />
+                                <FaGithub size={20} />
                             </a>
                             <a
                                 href="https://linkedin.com/in/vicente-danzmann"
@@ -48,13 +49,13 @@ const HeroSection = () => {
                                 rel="noopener noreferrer"
                                 className="p-3 rounded-lg border border-border bg-secondary/50 text-muted-foreground hover:text-primary hover:border-primary/50 hover:glow-border transition-all"
                             >
-                                <Linkedin size={20} />
+                                <FaLinkedin size={20} />
                             </a>
                             <a
                                 href="mailto:ivcente@gmail.com"
                                 className="p-3 rounded-lg border border-border bg-secondary/50 text-muted-foreground hover:text-primary hover:border-primary/50 hover:glow-border transition-all"
                             >
-                                <Mail size={20} />
+                                <GrMailOption size={20} />
                             </a>
                         </div>
                     </motion.div>
