@@ -19,7 +19,7 @@ function getEmbedUrl(url: string): string | null {
     return null;
 }
 
-const ProjectPage = () => {
+const Project = () => {
     const { slug } = useParams<{ slug: string }>();
     const project = projects.find((p) => p.slug === slug);
 
@@ -183,4 +183,4 @@ const ProjectPage = () => {
     );
 };
 
-export default ProjectPage;
+export default Project;

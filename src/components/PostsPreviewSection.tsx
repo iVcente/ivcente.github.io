@@ -5,7 +5,7 @@ import { ArrowRight, Calendar } from "lucide-react";
 import { posts } from "@/data/posts";
 import { formatDate } from "@/lib/utils";
 
-const PostsSection = () => {
+const PostsPreviewSection = () => {
     const [activeTag, setActiveTag] = useState<string | null>(null);
 
     const allTags = useMemo(
@@ -118,4 +118,4 @@ const PostsSection = () => {
     );
 };
 
-export default PostsSection;
+export default PostsPreviewSection;

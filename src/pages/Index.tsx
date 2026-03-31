@@ -1,16 +1,16 @@
 import Navbar from "@/components/Navbar";
-import HeroSection from "@/components/HeroSection";
-import ProjectsSection from "@/components/ProjectsSection";
-import PostsSection from "@/components/PostsSection";
+import IntroSection from "@/components/IntroSection";
+import ProjectsPreviewSection from "@/components/ProjectsPreviewSection";
+import PostsPreviewSection from "@/components/PostsPreviewSection";
 import Footer from "@/components/Footer";
 
 const Index = () => {
     return (
         <div className="min-h-screen bg-background">
             <Navbar />
-            <HeroSection />
-            <ProjectsSection />
-            <PostsSection />
+            <IntroSection />
+            <ProjectsPreviewSection />
+            <PostsPreviewSection />
             <Footer />
         </div>
     );

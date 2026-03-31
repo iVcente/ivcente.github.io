@@ -8,9 +8,9 @@ import Loading from "./pages/Loading";
 
 const Index = lazy(() => import("./pages/Index"))
 const Posts = lazy(() => import("./pages/Posts"))
-const PostPage = lazy(() => import("./pages/PostPage"))
+const Post = lazy(() => import("./pages/Post"))
 const Projects = lazy(() => import("./pages/Projects"))
-const ProjectPage = lazy(() => import("./pages/ProjectPage"))
+const Project = lazy(() => import("./pages/Project"))
 const NotFound = lazy(() => import("./pages/NotFound"))
 
 const App = () => (
@@ -22,9 +22,9 @@ const App = () => (
                 <Routes>
                     <Route path="/" element={<Index />} />
                     <Route path="/posts" element={<Posts />} />
-                    <Route path="/posts/:slug" element={<PostPage />} />
+                    <Route path="/posts/:slug" element={<Post />} />
                     <Route path="/projects" element={<Projects />} />
-                    <Route path="/projects/:slug" element={<ProjectPage />} />
+                    <Route path="/projects/:slug" element={<Project />} />
                     <Route path="*" element={<NotFound />} />
                 </Routes>
             </Suspense>

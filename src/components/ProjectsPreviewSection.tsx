@@ -5,7 +5,7 @@ import { FaGithub, FaSteam } from "react-icons/fa";
 import { SiEpicgames } from "react-icons/si";
 import { projects } from "@/data/projects";
 
-const ProjectsSection = () => {
+const ProjectsPreviewSection = () => {
     return (
         <section className="py-24 relative">
             {/* Fade-in from hero */}
@@ -98,4 +98,4 @@ const ProjectsSection = () => {
     );
 };
 
-export default ProjectsSection;
+export default ProjectsPreviewSection;
