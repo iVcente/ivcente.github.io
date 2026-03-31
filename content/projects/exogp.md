@@ -22,7 +22,7 @@ ExoGP is a racing game where players customize their exoskeletons to race and ba
 
 I have been involved in the project since its early prototyping phase through to its public alpha release. During this time, I led the programming team, acted as the primary point of contact between clients and the development team, and served as a key technical reference across multiple disciplines, including animation, environment art, and technical art.
 
-My contributions include:
+My contributions included:
 - Developing the multiplayer backbone to ensure a smooth and reliable experience;
 - Implementing backend services using Rally Here for lobbies, friends, and matchmaking;
 - Building an animation system capable of supporting interchangeable equipment pieces;
