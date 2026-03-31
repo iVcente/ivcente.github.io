@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight, ExternalLink, Github } from "lucide-react";
+import { ArrowRight, ExternalLink } from "lucide-react";
+import { FaGithub, FaSteam } from "react-icons/fa";
+import { SiEpicgames } from "react-icons/si";
 import { projects } from "@/data/projects";
 
 const ProjectsSection = () => {
@@ -51,9 +53,9 @@ const ProjectsSection = () => {
                                         loading="lazy"
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-card via-card/60 to-transparent" />
-                                    {project.status && (
+                                    {project.type && (
                                         <span className="absolute top-3 right-3 text-xs font-mono px-2 py-1 rounded bg-primary/90 text-primary-foreground">
-                                            {project.status}
+                                            {project.type}
                                         </span>
                                     )}
                                 </div>
@@ -63,8 +65,10 @@ const ProjectsSection = () => {
                                             {project.title}
                                         </h3>
                                         <div className="flex gap-2">
-                                            {project.github && <Github className="text-muted-foreground" size={16} />}
-                                            {project.demo && <ExternalLink className="text-muted-foreground" size={16} />}
+                                            {project.github && <FaGithub className="text-muted-foreground" size={16} />}
+                                            {project.steam && <FaSteam className="text-muted-foreground" size={16} />}
+                                            {project.epicGamesStore && <SiEpicgames className="text-muted-foreground" size={16} />}
+                                            {project.website && <ExternalLink className="text-muted-foreground" size={16} />}
                                         </div>
                                     </div>
                                     <p className="text-sm text-muted-foreground mb-4 leading-relaxed line-clamp-2">

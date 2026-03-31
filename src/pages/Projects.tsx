@@ -1,7 +1,9 @@
 import { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft, Github, ExternalLink } from "lucide-react";
+import { ArrowLeft, ExternalLink } from "lucide-react";
+import { FaGithub, FaSteam } from "react-icons/fa";
+import { SiEpicgames } from "react-icons/si";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { projects } from "@/data/projects";
@@ -83,9 +85,9 @@ const Projects = () => {
                                         loading="lazy"
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-card via-card/60 to-transparent" />
-                                    {project.status && (
+                                    {project.type && (
                                         <span className="absolute top-3 right-3 text-xs font-mono px-2 py-1 rounded bg-primary/90 text-primary-foreground">
-                                            {project.status}
+                                            {project.type}
                                         </span>
                                     )}
                                 </div>
@@ -95,8 +97,10 @@ const Projects = () => {
                                             {project.title}
                                         </h3>
                                         <div className="flex gap-2">
-                                            {project.github && <Github className="text-muted-foreground" size={16} />}
-                                            {project.demo && <ExternalLink className="text-muted-foreground" size={16} />}
+                                            {project.github && <FaGithub className="text-muted-foreground" size={16} />}
+                                            {project.steam && <FaSteam className="text-muted-foreground" size={16} />}
+                                            {project.epicGamesStore && <SiEpicgames className="text-muted-foreground" size={16} />}
+                                            {project.website && <ExternalLink className="text-muted-foreground" size={16} />}
                                         </div>
                                     </div>
                                     <p className="text-sm text-muted-foreground mb-4 leading-relaxed line-clamp-2">

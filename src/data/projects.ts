@@ -5,14 +5,16 @@ export interface Project {
     summary: string;
     tags: string[];
     cover: string;
-    status: string;
-    role: string;
+    type: string;
+    company: string;
     teamSize: string;
-    duration: string;
-    platform: string;
+    period: string;
     github: string;
-    demo: string;
+    steam: string;
+    epicGamesStore: string;
+    website: string;
     video: string;
+    videoDescription: string;
     content: string;
 }
 
@@ -37,13 +39,13 @@ function parseFrontmatter(raw: string): { data: Record<string, unknown>; content
     return { data, content };
 }
 
-const postFiles = import.meta.glob("/content/projects/*.md", {
+const projectFiles = import.meta.glob("/content/projects/*.md", {
     eager: true,
     query: "?raw",
     import: "default",
 }) as Record<string, string>;
 
-export const projects: Project[] = Object.entries(postFiles)
+export const projects: Project[] = Object.entries(projectFiles)
     .map(([path, raw]) => {
         const slug = path.split("/").pop()!.replace(/\.md$/, "");
         const { data, content } = parseFrontmatter(raw);
@@ -54,14 +56,17 @@ export const projects: Project[] = Object.entries(postFiles)
             summary: (data.summary as string) ?? "",
             tags: (data.tags as string[]) ?? [],
             cover: (data.cover as string) ?? "",
-            status: (data.status as string) ?? "",
-            role: (data.role as string) ?? "",
-            teamSize: (data.team_size as string) ?? "",
-            duration: (data.duration as string) ?? "",
+            type: (data.type as string) ?? "",
+            company: (data.company as string) ?? "",
+            teamSize: (data.teamSize as string) ?? "",
+            period: (data.period as string) ?? "",
             platform: (data.platform as string) ?? "",
             github: (data.github as string) ?? "",
-            demo: (data.demo as string) ?? "",
+            steam: (data.steam as string) ?? "",
+            epicGamesStore: (data.epicGamesStore as string) ?? "",
+            website: (data.website as string) ?? "",
             video: (data.video as string) ?? "",
+            videoDescription: (data.videoDescription as string) ?? "",
             content: content.trim(),
         } as Project;
     })

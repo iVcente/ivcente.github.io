@@ -1,6 +1,8 @@
 import { useParams, Link, Navigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft, Calendar, Github, ExternalLink, Users, Clock, Monitor, Play } from "lucide-react";
+import { ArrowLeft, Calendar, ExternalLink, Users, Clock, Monitor, Play } from "lucide-react";
+import { FaRegBuilding, FaGithub, FaSteam } from "react-icons/fa";
+import { SiEpicgames } from "react-icons/si";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
@@ -38,13 +40,13 @@ const ProjectPage = () => {
                         <ArrowLeft size={14} /> Back to Projects
                     </Link>
 
-                    {/* Hero cover */}
+                    {/* Cover */}
                     {project.cover && (
                         <div className="relative rounded-lg overflow-hidden mb-8 h-64 md:h-80">
                             <img
                                 src={project.cover}
                                 alt={project.title}
-                                className="w-full h-full object-cover"
+                                className="w-full h-full object-cover object-top"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
                         </div>
@@ -56,9 +58,9 @@ const ProjectPage = () => {
                             <Calendar size={12} />
                             {formatDate(project.date)}
                         </span>
-                        {project.status && (
+                        {project.type && (
                             <span className="text-xs font-mono px-2 py-0.5 rounded bg-primary/20 text-primary">
-                                {project.status}
+                                {project.type}
                             </span>
                         )}
                         {project.tags.map((tag) => (
@@ -70,12 +72,12 @@ const ProjectPage = () => {
 
                     {/* Details grid */}
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 p-4 rounded-lg border border-border bg-card">
-                        {project.role && (
+                        {project.company && (
                             <div className="flex items-center gap-2 text-sm">
-                                <Users size={14} className="text-primary" />
+                                <FaRegBuilding size={14} className="text-primary" />
                                 <div>
-                                    <p className="text-xs text-muted-foreground">Role</p>
-                                    <p className="font-mono text-xs">{project.role}</p>
+                                    <p className="text-xs text-muted-foreground">Company</p>
+                                    <p className="font-mono text-xs">{project.company}</p>
                                 </div>
                             </div>
                         )}
@@ -83,26 +85,17 @@ const ProjectPage = () => {
                             <div className="flex items-center gap-2 text-sm">
                                 <Users size={14} className="text-primary" />
                                 <div>
-                                    <p className="text-xs text-muted-foreground">Team</p>
+                                    <p className="text-xs text-muted-foreground">Team Size</p>
                                     <p className="font-mono text-xs">{project.teamSize}</p>
                                 </div>
                             </div>
                         )}
-                        {project.duration && (
+                        {project.period && (
                             <div className="flex items-center gap-2 text-sm">
                                 <Clock size={14} className="text-primary" />
                                 <div>
-                                    <p className="text-xs text-muted-foreground">Duration</p>
-                                    <p className="font-mono text-xs">{project.duration}</p>
-                                </div>
-                            </div>
-                        )}
-                        {project.platform && (
-                            <div className="flex items-center gap-2 text-sm">
-                                <Monitor size={14} className="text-primary" />
-                                <div>
-                                    <p className="text-xs text-muted-foreground">Platform</p>
-                                    <p className="font-mono text-xs">{project.platform}</p>
+                                    <p className="text-xs text-muted-foreground">Period</p>
+                                    <p className="font-mono text-xs">{project.period}</p>
                                 </div>
                             </div>
                         )}
@@ -117,17 +110,37 @@ const ProjectPage = () => {
                                 rel="noopener noreferrer"
                                 className="inline-flex items-center gap-2 text-sm font-mono px-4 py-2 rounded-lg border border-border bg-secondary text-secondary-foreground hover:border-primary/40 transition-colors"
                             >
-                                <Github size={14} /> Source
+                                <FaGithub size={14} /> GitHub
                             </a>
                         )}
-                        {project.demo && (
+                        {project.steam && (
                             <a
-                                href={project.demo}
+                                href={project.steam}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-2 text-sm font-mono px-4 py-2 rounded-lg border border-border bg-secondary text-secondary-foreground hover:border-primary/40 transition-colors"
+                            >
+                                <FaSteam size={14} /> Steam
+                            </a>
+                        )}
+                        {project.epicGamesStore && (
+                            <a
+                                href={project.epicGamesStore}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-2 text-sm font-mono px-4 py-2 rounded-lg border border-border bg-secondary text-secondary-foreground hover:border-primary/40 transition-colors"
+                            >
+                                <SiEpicgames size={14} /> Epic Games Store
+                            </a>
+                        )}
+                        {project.website && (
+                            <a
+                                href={project.website}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="inline-flex items-center gap-2 text-sm font-mono px-4 py-2 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors"
                             >
-                                <ExternalLink size={14} /> Live Demo
+                                <ExternalLink size={14} /> Website
                             </a>
                         )}
                     </div>
@@ -136,12 +149,12 @@ const ProjectPage = () => {
                     {embedUrl && (
                         <div className="mb-10">
                             <h3 className="font-mono text-sm text-muted-foreground mb-3 flex items-center gap-2">
-                                <Play size={14} className="text-primary" /> Video
+                                <Play size={14} className="text-primary" /> {project.videoDescription}
                             </h3>
                             <div className="relative rounded-lg overflow-hidden border border-border" style={{ paddingTop: "56.25%" }}>
                                 <iframe
                                     src={embedUrl}
-                                    title={`${project.title} video`}
+                                    title={`${project.title} Video`}
                                     className="absolute inset-0 w-full h-full"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     allowFullScreen
@@ -151,7 +164,8 @@ const ProjectPage = () => {
                     )}
 
                     {/* Content */}
-                    <article className="prose prose-invert prose-sm max-w-none
+                    <article className="
+                        prose prose-invert prose-sm max-w-none
                         prose-headings:font-mono prose-headings:text-foreground
                         prose-p:text-muted-foreground prose-p:leading-relaxed
                         prose-a:text-primary prose-a:no-underline hover:prose-a:underline
@@ -169,4 +183,4 @@ const ProjectPage = () => {
     );
 };
 
-export default ProjectPage; 
+export default ProjectPage;
