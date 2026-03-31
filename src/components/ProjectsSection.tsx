@@ -33,7 +33,7 @@ const ProjectsSection = () => {
                 </motion.div>
 
                 <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                    {projects.slice(0, 3).map((project, i) => (
+                    {projects.filter((project) => project.type === "Game").slice(0, 3).map((project, i) => (
                         <motion.div
                             key={project.slug}
                             initial={{ opacity: 0, y: 20 }}
