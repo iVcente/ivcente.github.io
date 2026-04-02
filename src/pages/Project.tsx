@@ -6,6 +6,7 @@ import { SiEpicgames } from "react-icons/si";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
+import TableOfContents from "@/components/TableOfContents";
 import { projects } from "@/data/projects";
 import { formatDate } from "@/lib/utils";
 
@@ -162,6 +163,9 @@ const Project = () => {
                             </div>
                         </div>
                     )}
+
+                    {/* Table of Contents */}
+                    <TableOfContents content={project.content} className="mb-10" />
 
                     {/* Content */}
                     <article className="

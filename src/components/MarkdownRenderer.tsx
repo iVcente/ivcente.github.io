@@ -66,7 +66,34 @@ function extractCalloutType(children: ReactNode): { type: string; content: React
     return null;
 }
 
+function slugify(text: string): string {
+    return text
+        .toLowerCase()
+        .replace(/[^\w\s-]/g, "")
+        .replace(/\s+/g, "-");
+}
+
+function extractText(node: ReactNode): string {
+    if (typeof node === "string") return node;
+    if (typeof node === "number") return String(node);
+    if (Array.isArray(node)) return node.map(extractText).join("");
+    if (node && typeof node === "object" && "props" in node) return extractText(node.props.children);
+    return "";
+}
+
 const components: Components = {
+    h1: ({ children, ...props }) => {
+        const id = slugify(extractText(children as ReactNode));
+        return <h1 id={id} {...props}>{children}</h1>;
+    },
+    h2: ({ children, ...props }) => {
+        const id = slugify(extractText(children as ReactNode));
+        return <h2 id={id} {...props}>{children}</h2>;
+    },
+    h3: ({ children, ...props }) => {
+        const id = slugify(extractText(children as ReactNode));
+        return <h3 id={id} {...props}>{children}</h3>;
+    },
     blockquote: ({ children, ...props }) => {
         const callout = extractCalloutType(children as ReactNode);
         if (callout) {
