@@ -1,5 +1,6 @@
 import { useParams, Link, Navigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useRef } from "react";
 import { ArrowLeft, Calendar, ExternalLink, Users, Clock, Monitor, Play } from "lucide-react";
 import { FaRegBuilding, FaGithub, FaSteam } from "react-icons/fa";
 import { SiEpicgames } from "react-icons/si";
@@ -7,6 +8,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
 import TableOfContents from "@/components/TableOfContents";
+import FloatingTableOfContents from "@/components/FloatingTableOfContents";
 import { projects } from "@/data/projects";
 import { formatDate } from "@/lib/utils";
 
@@ -23,6 +25,7 @@ function getEmbedUrl(url: string): string | null {
 const Project = () => {
     const { slug } = useParams<{ slug: string }>();
     const project = projects.find((p) => p.slug === slug);
+    const tableOfContentsRef = useRef<HTMLDivElement>(null);
 
     if (!project) return <Navigate to="/projects" replace />;
 
@@ -165,7 +168,9 @@ const Project = () => {
                     )}
 
                     {/* Table of Contents */}
-                    <TableOfContents content={project.content} className="mb-10" />
+                    <div ref={tableOfContentsRef}>
+                        <TableOfContents content={project.content} className="mb-10" />
+                    </div>
 
                     {/* Content */}
                     <article className="
@@ -182,6 +187,7 @@ const Project = () => {
                     </article>
                 </motion.div>
             </main>
+            <FloatingTableOfContents content={project.content} tocRef={tableOfContentsRef} />
             <Footer />
         </div>
     );

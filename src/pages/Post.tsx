@@ -1,16 +1,19 @@
 import { useParams, Link, Navigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useRef } from "react";
 import { ArrowLeft, Calendar } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import MarkdownRenderer from "@/components/MarkdownRenderer";
 import TableOfContents from "@/components/TableOfContents";
+import FloatingTableOfContents from "@/components/FloatingTableOfContents";
 import { posts } from "@/data/posts";
 import { formatDate } from "@/lib/utils";
 
 const PostPage = () => {
     const { slug } = useParams<{ slug: string }>();
     const post = posts.find((a) => a.slug === slug);
+    const tableOfContentsRef = useRef<HTMLDivElement>(null);
 
     if (!post) return <Navigate to="/posts" replace />;
 
@@ -41,13 +44,16 @@ const PostPage = () => {
                         </div>
                     </div>
 
-                    <TableOfContents content={post.content} className="mb-8" />
+                    <div ref={tableOfContentsRef}>
+                        <TableOfContents content={post.content} className="mb-8" />
+                    </div>
 
                     <article className="prose prose-invert prose-headings:font-mono prose-headings:text-foreground prose-p:text-muted-foreground prose-a:text-primary prose-strong:text-foreground prose-code:text-primary prose-code:bg-secondary prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:before:content-none prose-code:after:content-none prose-pre:bg-card prose-pre:border prose-pre:border-border max-w-none">
                         <MarkdownRenderer content={post.content} />
                     </article>
                 </motion.div>
             </main>
+            <FloatingTableOfContents content={post.content} tocRef={tableOfContentsRef} />
             <Footer />
         </div>
     );
