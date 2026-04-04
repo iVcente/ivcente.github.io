@@ -38,16 +38,6 @@ const Posts = () => {
                     <p className="text-muted-foreground mb-8">All notes, findings, and deep dives.</p>
 
                     <div className="flex flex-wrap gap-2 mb-12">
-                        <button
-                            onClick={() => setActiveTag(null)}
-                            className={`text-xs font-mono px-3 py-1.5 rounded-full border transition-colors ${
-                                activeTag === null
-                                    ? "bg-primary text-primary-foreground border-primary"
-                                    : "bg-secondary text-secondary-foreground border-border hover:border-primary/40"
-                            }`}
-                        >
-                            All
-                        </button>
                         {allTags.map((tag) => (
                             <button
                                 key={tag}

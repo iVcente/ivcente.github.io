@@ -32,7 +32,7 @@ const Projects = () => {
             if (a.type === "Game" && b.type !== "Game") return -1;
             if (a.type !== "Game" && b.type === "Game") return 1;
             return b.date > a.date ? 1 : -1;
-        });
+                    });
     }, [activeType, activeTag]);
 
     return (
@@ -72,16 +72,6 @@ const Projects = () => {
 
                     {/* Tag filter */}
                     <div className="flex flex-wrap gap-2 mb-12">
-                        <button
-                            onClick={() => setActiveTag(null)}
-                            className={`text-xs font-mono px-3 py-1.5 rounded-full border transition-colors ${
-                                activeTag === null
-                                    ? "bg-primary text-primary-foreground border-primary"
-                                    : "bg-secondary text-secondary-foreground border-border hover:border-primary/40"
-                            }`}
-                        >
-                            All
-                        </button>
                         {allTags.map((tag) => (
                             <button
                                 key={tag}
