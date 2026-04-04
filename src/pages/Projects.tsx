@@ -24,15 +24,16 @@ const Projects = () => {
     );
 
     const filtered = useMemo(() => {
-        let result = projects;
+        let result = [...projects];
         if (activeType) result = result.filter((p) => p.type === activeType);
         if (activeTag) result = result.filter((p) => p.tags.includes(activeTag));
         // Games first, then alphabetical by type
         return result.sort((a, b) => {
             if (a.type === "Game" && b.type !== "Game") return -1;
             if (a.type !== "Game" && b.type === "Game") return 1;
-            return b.date > a.date ? 1 : -1;
-                    });
+            if (a.date !== b.date) return b.date > a.date ? 1 : -1;
+            return a.title.localeCompare(b.title);
+        });
     }, [activeType, activeTag]);
 
     return (
