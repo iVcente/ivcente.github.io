@@ -9,16 +9,31 @@ import Footer from "@/components/Footer";
 import { projects } from "@/data/projects";
 
 const Projects = () => {
+    const [activeType, setActiveType] = useState<string | null>(null);
     const [activeTag, setActiveTag] = useState<string | null>(null);
+
+    const allTypes = useMemo(() => {
+        const types = [...new Set(projects.map((p) => p.type).filter(Boolean))];
+        // "Game" always first
+        return types.sort((a, b) => (a === "Game" ? -1 : b === "Game" ? 1 : a.localeCompare(b)));
+    }, []);
 
     const allTags = useMemo(
         () => [...new Set(projects.flatMap((p) => p.tags))].sort(),
         []
     );
 
-    const filtered = activeTag
-        ? projects.filter((p) => p.tags.includes(activeTag))
-        : projects;
+    const filtered = useMemo(() => {
+        let result = projects;
+        if (activeType) result = result.filter((p) => p.type === activeType);
+        if (activeTag) result = result.filter((p) => p.tags.includes(activeTag));
+        // Games first, then alphabetical by type
+        return result.sort((a, b) => {
+            if (a.type === "Game" && b.type !== "Game") return -1;
+            if (a.type !== "Game" && b.type === "Game") return 1;
+            return b.date > a.date ? 1 : -1;
+        });
+    }, [activeType, activeTag]);
 
     return (
         <div className="min-h-screen bg-background">
@@ -38,6 +53,24 @@ const Projects = () => {
                     </h1>
                     <p className="text-muted-foreground mb-8">All projects and experiments.</p>
 
+                    {/* Type filter */}
+                    <div className="flex flex-wrap items-center gap-3 mb-6">
+                        {allTypes.map((type) => (
+                            <button
+                                key={type}
+                                onClick={() => setActiveType(activeType === type ? null : type)}
+                                className={`text-sm font-mono font-semibold px-4 py-2 rounded border-2 transition-all ${
+                                    activeType === type
+                                        ? "border-primary text-primary bg-primary/10"
+                                        : "border-border text-muted-foreground hover:border-primary/40 hover:text-foreground"
+                                }`}
+                            >
+                                <span className="text-primary mr-1">#</span>{type}
+                            </button>
+                        ))}
+                    </div>
+
+                    {/* Tag filter */}
                     <div className="flex flex-wrap gap-2 mb-12">
                         <button
                             onClick={() => setActiveTag(null)}
