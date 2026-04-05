@@ -45,7 +45,7 @@ const Posts = () => {
                     <h1 className="text-4xl font-mono font-bold mb-2">
                         <span className="text-primary">~/</span>posts
                     </h1>
-                    <p className="text-muted-foreground mb-8">All notes, findings, and deep dives.</p>
+                    <p className="text-muted-foreground mb-8">A collection of notes, findings, and deep dives.</p>
 
                     <div className="flex flex-wrap gap-2 mb-12">
                         {allTags.map((tag) => (

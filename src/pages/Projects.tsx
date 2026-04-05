@@ -62,7 +62,7 @@ const Projects = () => {
                     <h1 className="text-4xl font-mono font-bold mb-2">
                         <span className="text-primary">~/</span>projects
                     </h1>
-                    <p className="text-muted-foreground mb-8">All projects and experiments.</p>
+                    <p className="text-muted-foreground mb-8">A collection of projects, from my professional game development work to Unreal Engine plugins, and explorations driven by curiosity and the joy of building cool stuff.</p>
 
                     {/* Type filter */}
                     <div className="flex flex-wrap items-center gap-3 mb-6">
