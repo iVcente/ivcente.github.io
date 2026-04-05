@@ -6,6 +6,7 @@ tags: ["C++", "Unreal Engine"]
 type: "Game"
 cover: "/images/projects/reaper-actual.jpg"
 company: "Big Moxi Games"
+companyWebsite: "https://bigmoxigames.com/"
 teamSize: "120"
 period: "March 2025 – November 2025"
 github: ""

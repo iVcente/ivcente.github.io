@@ -6,6 +6,7 @@ tags: ["C++", "Unreal Engine"]
 type: "Game"
 cover: "/images/projects/wardens-rising.jpg"
 company: "Big Moxi Games"
+companyWebsite: "https://bigmoxigames.com/"
 teamSize: "50"
 period: "May 2022 – January 2023"
 github: ""

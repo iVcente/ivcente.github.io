@@ -84,7 +84,13 @@ const Project = () => {
                                 <FaRegBuilding size={14} className="text-primary" />
                                 <div>
                                     <p className="text-xs text-muted-foreground">Company</p>
-                                    <p className="font-mono text-xs">{project.company}</p>
+                                    {project.companyWebsite ? (
+                                        <a href={project.companyWebsite} target="_blank" rel="noopener noreferrer" className="font-mono text-xs text-primary hover:underline">
+                                            {project.company}
+                                        </a>
+                                    ) : (
+                                        <p className="font-mono text-xs">{project.company}</p>
+                                    )}
                                 </div>
                             </div>
                         )}

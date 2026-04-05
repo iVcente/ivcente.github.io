@@ -6,6 +6,7 @@ tags: ["C++", "Unreal Engine"]
 type: "Game"
 cover: "/images/projects/exogp.jpg"
 company: "Big Moxi Games"
+companyWebsite: "https://bigmoxigames.com/"
 teamSize: "40"
 period: "January 2023 – March 2025"
 github: ""

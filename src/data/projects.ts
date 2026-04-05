@@ -7,6 +7,7 @@ export interface Project {
     cover: string;
     type: string;
     company: string;
+    companyWebsite: string;
     teamSize: string;
     period: string;
     github: string;
@@ -58,6 +59,7 @@ export const projects: Project[] = Object.entries(projectFiles)
             cover: (data.cover as string) ?? "",
             type: (data.type as string) ?? "",
             company: (data.company as string) ?? "",
+            companyWebsite: (data.companyWebsite as string) ?? "",
             teamSize: (data.teamSize as string) ?? "",
             period: (data.period as string) ?? "",
             platform: (data.platform as string) ?? "",
