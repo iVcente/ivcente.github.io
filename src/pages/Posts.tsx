@@ -1,4 +1,5 @@
 import { useState, useMemo } from "react";
+import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Calendar, ArrowLeft } from "lucide-react";
@@ -21,6 +22,7 @@ const Posts = () => {
 
     return (
         <div className="min-h-screen bg-background">
+            <Helmet><title>Posts</title></Helmet>
             <Navbar />
             <main className="container px-6 pt-28 pb-24">
                 <motion.div

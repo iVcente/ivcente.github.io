@@ -1,4 +1,5 @@
 import { useParams, Link, Navigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { useRef } from "react";
 import { ArrowLeft, Calendar } from "lucide-react";
@@ -19,6 +20,7 @@ const PostPage = () => {
 
     return (
         <div className="min-h-screen bg-background">
+            <Helmet><title>{post.title}</title></Helmet>
             <Navbar />
             <main className="container px-6 pt-28 pb-24 max-w-3xl">
                 <motion.div

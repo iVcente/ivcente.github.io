@@ -1,4 +1,5 @@
 import { useParams, Link, Navigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { useRef } from "react";
 import { ArrowLeft, Calendar, ExternalLink, Users, Clock, Monitor, Play } from "lucide-react";
@@ -33,6 +34,7 @@ const Project = () => {
 
     return (
         <div className="min-h-screen bg-background">
+            <Helmet><title>{project.title}</title></Helmet>
             <Navbar />
             <main className="container px-6 pt-28 pb-24">
                 <motion.div
