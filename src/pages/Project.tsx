@@ -56,6 +56,9 @@ const Project = () => {
                         </div>
                     )}
 
+                    {/* Title */}
+                    <h1 className="text-3xl md:text-4xl font-mono font-bold text-foreground mb-4">{project.title}</h1>
+
                     {/* Meta */}
                     <div className="flex flex-wrap items-center gap-4 mb-6">
                         <span className="flex items-center gap-1.5 text-xs text-muted-foreground font-mono">

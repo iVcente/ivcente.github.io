@@ -16,8 +16,6 @@ video: "https://youtu.be/3tJdBCanBHE?si=PAfNpHiSAVgmrTUD"
 videoDescription: "Gameplay"
 ---
 
-# ExoGP
-
 *ExoGP* is a racing game where players customize their exoskeletons to race and battle against others. Each exoskeleton is composed of multiple equipment pieces, each with unique visuals and attributes. Players can also equip Modules to tailor their playstyle, choosing from abilities such as homing missiles, boost chargers, smoke screens, and more.
 
 I have been involved in the project since its early prototyping phase through to its public alpha release. During this time, I led the programming team, acted as the primary point of contact between clients and the development team, and served as a key technical reference across multiple disciplines, including animation, environment art, and technical art.

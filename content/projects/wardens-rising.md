@@ -16,8 +16,6 @@ video: "https://youtu.be/DJAdGP9vuTw?si=S4CKcA3z6x-ZydGy"
 videoDescription: "Gameplay"
 ---
 
-# Wardens Rising
-
 *Wardens Rising* is a fast-paced, multiplayer PvE co-op hero shooter that blends action gameplay with MOBA-style base defense. The main objective is to protect energy cores and defend them against massive enemy invasions using special abilities and customizable tech loadouts, while building and upgrading towers.
 
 I joined the project during a period of significant refactoring and changes in the game's vision. I focused primarily on developing gameplay features for the heroes, including creating abilities and integrating animations, VFX, and SFX.

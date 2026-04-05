@@ -30,6 +30,9 @@ const PostPage = () => {
                         <ArrowLeft size={14} /> Back to Posts
                     </Link>
 
+                    {/* Title */}
+                    <h1 className="text-3xl md:text-4xl font-mono font-bold text-foreground mb-4">{post.title}</h1>
+
                     <div className="mb-8">
                         <div className="flex items-center gap-4 flex-wrap mb-4">
                             <span className="flex items-center gap-1.5 text-xs text-muted-foreground font-mono">
