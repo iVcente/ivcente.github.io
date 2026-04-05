@@ -20,7 +20,16 @@ const PostPage = () => {
 
     return (
         <div className="min-h-screen bg-background">
-            <Helmet><title>{post.title}</title></Helmet>
+            <Helmet>
+                <title>{post.title}</title>
+                <meta property="og:title" content={post.title} />
+                <meta property="og:description" content={post.summary} />
+                <meta property="og:image" content="/favicon.ico" />
+                <meta name="twitter:card" content="summary" />
+                <meta name="twitter:title" content={post.title} />
+                <meta name="twitter:description" content={post.summary} />
+                <meta name="twitter:image" content="/favicon.ico" />
+            </Helmet>
             <Navbar />
             <main className="container px-6 pt-28 pb-24 max-w-3xl">
                 <motion.div

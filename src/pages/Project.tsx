@@ -34,7 +34,16 @@ const Project = () => {
 
     return (
         <div className="min-h-screen bg-background">
-            <Helmet><title>{project.title}</title></Helmet>
+            <Helmet>
+                <title>{project.title}</title>
+                <meta property="og:title" content={project.title} />
+                <meta property="og:description" content={project.summary} />
+                <meta property="og:image" content={project.cover} />
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content={project.title} />
+                <meta name="twitter:description" content={project.summary} />
+                <meta name="twitter:image" content={project.cover} />
+            </Helmet>
             <Navbar />
             <main className="container px-6 pt-28 pb-24">
                 <motion.div

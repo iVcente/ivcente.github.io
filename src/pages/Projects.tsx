@@ -39,7 +39,15 @@ const Projects = () => {
 
     return (
         <div className="min-h-screen bg-background">
-            <Helmet><title>Projects</title></Helmet>
+            <Helmet>
+                <title>Projects</title>
+                <meta property="og:title" content="Danzmann.dev | Projects" />
+                <meta property="og:description" content="Gameplay Programmer building systems in C++ and Unreal Engine. Projects, technical insights, and explorations in game development and computer science." />
+                <meta property="og:image" content="/favicon.ico" />
+                <meta name="twitter:card" content="summary" />
+                <meta name="twitter:title" content="Danzmann.dev | Projects" />
+                <meta name="twitter:image" content="/favicon.ico" />
+            </Helmet>
             <Navbar />
             <main className="container px-6 pt-28 pb-24">
                 <motion.div
@@ -62,11 +70,10 @@ const Projects = () => {
                             <button
                                 key={type}
                                 onClick={() => setActiveType(activeType === type ? null : type)}
-                                className={`text-sm font-mono font-semibold px-4 py-2 rounded border-2 transition-all ${
-                                    activeType === type
+                                className={`text-sm font-mono font-semibold px-4 py-2 rounded border-2 transition-all ${activeType === type
                                         ? "border-primary text-primary bg-primary/10"
                                         : "border-border text-muted-foreground hover:border-primary/40 hover:text-foreground"
-                                }`}
+                                    }`}
                             >
                                 <span className="text-primary mr-1">#</span>{type}
                             </button>
@@ -79,11 +86,10 @@ const Projects = () => {
                             <button
                                 key={tag}
                                 onClick={() => setActiveTag(activeTag === tag ? null : tag)}
-                                className={`text-xs font-mono px-3 py-1.5 rounded-full border transition-colors ${
-                                    activeTag === tag
+                                className={`text-xs font-mono px-3 py-1.5 rounded-full border transition-colors ${activeTag === tag
                                         ? "bg-primary text-primary-foreground border-primary"
                                         : "bg-secondary text-secondary-foreground border-border hover:border-primary/40"
-                                }`}
+                                    }`}
                             >
                                 {tag}
                             </button>

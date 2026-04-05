@@ -22,7 +22,15 @@ const Posts = () => {
 
     return (
         <div className="min-h-screen bg-background">
-            <Helmet><title>Posts</title></Helmet>
+            <Helmet>
+                <title>Posts</title>
+                <meta property="og:title" content="Danzmann.dev | Posts" />
+                <meta property="og:description" content="Gameplay Programmer building systems in C++ and Unreal Engine. Projects, technical insights, and explorations in game development and computer science." />
+                <meta property="og:image" content="/favicon.ico" />
+                <meta name="twitter:card" content="summary" />
+                <meta name="twitter:title" content="Danzmann.dev | Posts" />
+                <meta name="twitter:image" content="/favicon.ico" />
+            </Helmet>
             <Navbar />
             <main className="container px-6 pt-28 pb-24">
                 <motion.div
@@ -44,11 +52,10 @@ const Posts = () => {
                             <button
                                 key={tag}
                                 onClick={() => setActiveTag(activeTag === tag ? null : tag)}
-                                className={`text-xs font-mono px-3 py-1.5 rounded-full border transition-colors ${
-                                    activeTag === tag
+                                className={`text-xs font-mono px-3 py-1.5 rounded-full border transition-colors ${activeTag === tag
                                         ? "bg-primary text-primary-foreground border-primary"
                                         : "bg-secondary text-secondary-foreground border-border hover:border-primary/40"
-                                }`}
+                                    }`}
                             >
                                 {tag}
                             </button>
