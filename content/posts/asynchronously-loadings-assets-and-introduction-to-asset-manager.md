@@ -101,7 +101,7 @@ As mentioned, pretty much all Assets are Secondary by default, in order to make 
 A Primary Asset ID (`FPrimaryAssetId`) uniquely identifies an object as a Primary Asset across the entire project, and has two parts:
 - Primary Asset Type: it is a `FPrimaryAssetType`, and identifies a group of Assets;
 - Primary Asset Name: it is a `FName`, and corresponds to a specific Primary Asset -- which defaults to the Asset's name as it appears in the Content Browser.
-When converted to a string, a Primary Asset ID follows the given pattern: "Primary Asset Type:Primary Asset Name".
+When converted to a string, a Primary Asset ID follows the given pattern: `"Primary Asset Type:Primary Asset Name"`.
 
 Although any object can be a Primary Asset, `UPrimaryDataAsset` already implements what it takes to be a Primary Asset. Let's take advantage of that to create a subclass named `UMyCustomPrimaryDataAsset` that inherits from it. Like so:
 
@@ -136,7 +136,7 @@ class MYPROJECT_API UMyCustomPrimaryDataAsset : public UPrimaryDataAsset
 > 
 > Whereas if you have `UPrimaryDataAsset` -> `ParentBlueprintClass` -> `DataOnlyBlueprintClass` the Primary Asset Type will be `ParentBlueprintClass`. To change this behavior, override `GetPrimaryAssetId()` in your native class or copy those functions into a different native base class.
 
-Based on this, creating a data only Blueprint from `UMyCustomPrimaryDataAsset` called "DA_MyDataAsset" will result in its Primary Asset ID looking like "MyCustomPrimaryDataAsset:DA_MyDataAsset".
+Based on this, creating a data only Blueprint from `UMyCustomPrimaryDataAsset` called "DA_MyDataAsset" will result in its Primary Asset ID looking like `"MyCustomPrimaryDataAsset:DA_MyDataAsset"`.
 
 ---
 
