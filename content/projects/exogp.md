@@ -25,7 +25,7 @@ Key contributions:
 - Developed the multiplayer backbone to ensure a smooth and reliable experience;
 - Implemented backend services using Rally Here for lobbies, friends, and matchmaking;
 - Built an animation system capable of supporting interchangeable equipment pieces;
-- Created editor tools to assist designers with level creation and environment artists with set dressing;
+- Created Editor tools to assist designers with level creation and environment artists with set dressing;
 - Integrated SFX and VFX into the game;
 - Developed UI elements using UMG and Slate;
 - Improved and supported the build pipeline;
