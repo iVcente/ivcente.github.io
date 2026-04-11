@@ -1,5 +1,6 @@
 import ReactMarkdown, { type Components } from "react-markdown";
 import rehypeHighlight from "rehype-highlight";
+import rehypeRaw from "rehype-raw";
 import "highlight.js/styles/tokyo-night-dark.min.css";
 import { AlertTriangle, Info, Lightbulb, Flame, MessageSquare } from "lucide-react";
 import type { ReactNode } from "react";
@@ -94,6 +95,13 @@ const components: Components = {
         const id = slugify(extractText(children as ReactNode));
         return <h3 id={id} {...props}>{children}</h3>;
     },
+    iframe: ({ ...props }) => (
+        <iframe
+            {...props}
+            className="w-full rounded-lg border border-border"
+            style={{ height: "300px", ...((props as Record<string, unknown>).style as object) }}
+        />
+    ),
     blockquote: ({ children, ...props }) => {
         const callout = extractCalloutType(children as ReactNode);
         if (callout) {
@@ -123,7 +131,7 @@ interface MarkdownRendererProps {
 
 const MarkdownRenderer = ({ content, className }: MarkdownRendererProps) => (
     <div className={className}>
-        <ReactMarkdown rehypePlugins={[rehypeHighlight]} components={components}>
+        <ReactMarkdown rehypePlugins={[rehypeRaw, rehypeHighlight]} components={components}>
             {content}
         </ReactMarkdown>
     </div>
