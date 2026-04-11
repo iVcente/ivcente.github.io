@@ -1,7 +1,7 @@
 import ReactMarkdown, { type Components } from "react-markdown";
 import rehypeHighlight from "rehype-highlight";
 import rehypeRaw from "rehype-raw";
-import "highlight.js/styles/tokyo-night-dark.min.css";
+import "highlight.js/styles/tokyo-night-dark.css";
 import { AlertTriangle, Info, Lightbulb, Flame, MessageSquare } from "lucide-react";
 import type { ReactNode } from "react";
 
