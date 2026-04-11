@@ -89,41 +89,43 @@ const Project = () => {
                     </div>
 
                     {/* Details grid */}
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 p-4 rounded-lg border border-border bg-card">
-                        {project.company && (
-                            <div className="flex items-center gap-2 text-sm">
-                                <FaRegBuilding size={14} className="text-primary" />
-                                <div>
-                                    <p className="text-xs text-muted-foreground">Company</p>
-                                    {project.companyWebsite ? (
-                                        <a href={project.companyWebsite} target="_blank" rel="noopener noreferrer" className="font-mono text-xs text-primary hover:underline">
-                                            {project.company}
-                                        </a>
-                                    ) : (
-                                        <p className="font-mono text-xs">{project.company}</p>
-                                    )}
+                    {(project.company || project.teamSize || project.period) && (
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 p-4 rounded-lg border border-border bg-card">
+                            {project.company && (
+                                <div className="flex items-center gap-2 text-sm">
+                                    <FaRegBuilding size={14} className="text-primary" />
+                                    <div>
+                                        <p className="text-xs text-muted-foreground">Company</p>
+                                        {project.companyWebsite ? (
+                                            <a href={project.companyWebsite} target="_blank" rel="noopener noreferrer" className="font-mono text-xs text-primary hover:underline">
+                                                {project.company}
+                                            </a>
+                                        ) : (
+                                            <p className="font-mono text-xs">{project.company}</p>
+                                        )}
+                                    </div>
                                 </div>
-                            </div>
-                        )}
-                        {project.teamSize && (
-                            <div className="flex items-center gap-2 text-sm">
-                                <Users size={14} className="text-primary" />
-                                <div>
-                                    <p className="text-xs text-muted-foreground">Team Size</p>
-                                    <p className="font-mono text-xs">{project.teamSize}</p>
+                            )}
+                            {project.teamSize && (
+                                <div className="flex items-center gap-2 text-sm">
+                                    <Users size={14} className="text-primary" />
+                                    <div>
+                                        <p className="text-xs text-muted-foreground">Team Size</p>
+                                        <p className="font-mono text-xs">{project.teamSize}</p>
+                                    </div>
                                 </div>
-                            </div>
-                        )}
-                        {project.period && (
-                            <div className="flex items-center gap-2 text-sm">
-                                <Clock size={14} className="text-primary" />
-                                <div>
-                                    <p className="text-xs text-muted-foreground">Period</p>
-                                    <p className="font-mono text-xs">{project.period}</p>
+                            )}
+                            {project.period && (
+                                <div className="flex items-center gap-2 text-sm">
+                                    <Clock size={14} className="text-primary" />
+                                    <div>
+                                        <p className="text-xs text-muted-foreground">Period</p>
+                                        <p className="font-mono text-xs">{project.period}</p>
+                                    </div>
                                 </div>
-                            </div>
-                        )}
-                    </div>
+                            )}
+                        </div>
+                    )}
 
                     {/* Links */}
                     <div className="flex gap-3 mb-10">
