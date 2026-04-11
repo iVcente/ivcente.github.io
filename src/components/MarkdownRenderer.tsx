@@ -105,7 +105,7 @@ const components: Components = {
                             {config.icon}
                             {config.title}
                         </div>
-                        <div className="text-sm text-muted-foreground [&>p]:m-0">
+                        <div className="text-sm text-muted-foreground [&>p]:m-0 [&_code]:text-primary [&_code]:bg-secondary [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:rounded [&_code]:text-sm">
                             {callout.content}
                         </div>
                     </div>
