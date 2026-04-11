@@ -117,12 +117,12 @@ void AMyActor::MyCallback()
 ## Calling a Console Command 
 
 While playing the game, you can open the console and type your CCmd. It should autocomplete and also display your help message. Separate you command arguments (if any) with spaces:
-```cpp
+```shell
 MyProject.MyConsoleCommandWithWorldAndArgs 69 true "Argument3"
 ```
 
 You can also execute your CCmds on process startup as launch arguments:
-```cpp
+```shell
 .\MyGame.exe -ExecCmds="MyProject.MyConsoleCommandWithWorldAndArgs 69 true 'Argument3', MyProject.MyConsoleCommandWithArguments 77"
 ```
 
@@ -259,7 +259,7 @@ void UseCVar()
 ```
 
 Blueprints can access the CVars values with the following functions:
-> [!CAUTION] TODO Add BP
+<iframe src="https://blueprintue.com/render/-wolnb49/" scrolling="no" allowfullscreen></iframe>
 
 ##  Modifying a Console Variable Value
 
@@ -270,7 +270,7 @@ MyProject.MyExampleAutoConsoleVariable 42
 
 You can also override your CVars default values by adding them your `DefaultEngine.ini` file:
 
-```cpp
+```ini
 [ConsoleVariables]
 MyProject.MyExampleAutoConsoleVariable=42
 ```
