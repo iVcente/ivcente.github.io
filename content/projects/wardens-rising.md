@@ -4,7 +4,7 @@ date: "2026-03-30"
 summary: "Wardens Rising is a fast-paced, multiplayer PvE co-op hero shooter that blends action gameplay with MOBA-style base defense."
 tags: ["C++", "Unreal Engine"]
 type: "Game"
-cover: "/images/projects/wardens-rising.jpg"
+cover: "/images/projects/wardens-rising/wardens-rising.jpg"
 company: "Big Moxi Games"
 companyWebsite: "https://bigmoxigames.com/"
 teamSize: "50"
