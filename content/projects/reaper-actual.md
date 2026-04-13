@@ -4,7 +4,7 @@ date: "2026-04-01"
 summary: "Reaper Actual is an open-world persistent shooter where players engage in FPS combat against each other and five NPC Factions on the massive war-torn island of Marova."
 tags: ["C++", "Unreal Engine"]
 type: "Game"
-cover: "/images/projects/reaper-actual.jpg"
+cover: "/images/projects/reaper-actual/reaper-actual.jpg"
 company: "Big Moxi Games"
 companyWebsite: "https://bigmoxigames.com/"
 teamSize: "120"
