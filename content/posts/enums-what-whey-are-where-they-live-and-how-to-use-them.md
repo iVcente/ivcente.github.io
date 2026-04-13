@@ -113,7 +113,7 @@ Create an integer variable to store your flags. Then, check `Bitmask` and set th
 Then just use the equivalent BP functions to perform the same operations listed above for C++ -- and use the node `Make Bitmask` to make your life easier:
 ![BP Functions](images/projects/enums-what-whey-are-where-they-live-and-how-to-use-them/bp-bitmask-operations.jpg "BP Functions")
 
-> [!TIP] I wrote a plugin named [DanzmannBitmasking](https://danzmann.dev/#/projects/danzmann-bitmasking) with a few helpers -- for C++ and BP -- to abstract these operations.
+> [!TIP] I wrote a plugin named [DanzmannBitmasking](https://danzmann.dev/projects/danzmann-bitmasking) with a few helpers -- for C++ and BP -- to abstract these operations.
 
 ---
 
