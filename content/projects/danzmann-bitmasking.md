@@ -4,7 +4,7 @@ date: "2025-08-02"
 summary: "Simplifies bitmasks use in C++ and Blueprints by providing generic functions to most common operations."
 tags: ["C++", "Unreal Engine"]
 type: "Plugin"
-cover: "/images/projects/exogp.jpg"
+cover: "https://images-assets.nasa.gov/image/PIA23647/PIA23647~large.jpg"
 company: ""
 companyWebsite: ""
 teamSize: ""
