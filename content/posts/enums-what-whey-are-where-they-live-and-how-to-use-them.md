@@ -10,9 +10,7 @@ tags: ["Code"]
 Replacing the old `TEnumAsByte<>` workaround, and supported by `UPROPERTY` are `enum class`. They're much useful for listing a set of values and their respective names, performing bitwise operations, and sending data through the network. They also come with a bunch of quality of life helpers.
 
 Enums can be defined as such:
-```cpp
-// Thing.h
-
+```cpp:Thing.h
 #pragma once
 
 #include "Thing.generated.h"
@@ -24,9 +22,8 @@ enum class EThing : uint8
     Thing1,
     Thing2
 }
-
-// MyActor.cpp
-
+```
+```cpp:MyActor.cpp
 #include "Thing.h"
 
 UPROPERTY()
@@ -52,9 +49,7 @@ Creating an enum for a bitmask requires keeping a few things in mind:
 - Add the `Bitflags` and `UseEnumValuesAsMaskValuesInEditor` `UPROPERTY` meta specifiers.
 
 Putting it all together, it should look like this:
-```cpp
-// ElementalTrait.h
-
+```cpp:ElementalTrait.h
 #pragma once
 
 #include "ElementalTrait.generated.h"
@@ -76,9 +71,7 @@ ENUM_CLASS_FLAGS(EElementalTrait)
 ```
 
 Create an integer variable to hold your bitmask:
-```cpp
-// MyActor.cpp
-
+```cpp:MyActor.cpp
 // These UPROPERTY specifiers make the variable more intuitive for BP usage
 UPROPERTY(BlueprintReadWrite, Meta = (Bitmask, BitmaskEnum = "/Script/MyModuleName.EElementalTrait"))
 int32 ElementalTraits = 0;

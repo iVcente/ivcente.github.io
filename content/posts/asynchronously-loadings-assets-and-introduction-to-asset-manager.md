@@ -105,9 +105,7 @@ When converted to a string, a Primary Asset ID follows the given pattern: `"Prim
 
 Although any object can be a Primary Asset, `UPrimaryDataAsset` already implements what it takes to be a Primary Asset. Let's take advantage of that to create a subclass named `UMyCustomPrimaryDataAsset` that inherits from it. Like so:
 
-```cpp
-// MyCustomPrimaryDataAsset.h
-
+```cpp:MyCustomPrimaryDataAsset.h
 UCLASS()
 class MYPROJECT_API UMyCustomPrimaryDataAsset : public UPrimaryDataAsset
 {

@@ -20,7 +20,7 @@ A **Console Variable** (CVar) can be used to store state information that can be
 You can create a command in your `.cpp` file that when called will call some other function in your code. There are a few options to choose from depending on your needs for:
 - The current world context (e.g., to operate on Actors or Game State);
 - The full list of command-line arguments passed to the console command.
-  
+
 Based on this, choose between:
 - `FAutoConsoleCommandWithWorldAndArgs` -- If you need both command arguments and current world context;
 - `FAutoConsoleCommandWithWorld` -- If you need just the current world context;
@@ -29,9 +29,7 @@ Based on this, choose between:
 According to which one is chosen, you need to use a different delegate to bind a callback. Below there are examples on how to do so:
 ### Command Requires Both Current World Context and Arguments List
 
-```cpp
-// SomeFile.cpp
-
+```cpp:SomeFile.cpp
 namespace MyCCmds
 {
     static FAutoConsoleCommandWithWorldAndArgs ConsoleCommandWithWorldAndArgs(
@@ -51,9 +49,7 @@ namespace MyCCmds
 
 ###  Command Requires Just the Current World Context
 
-```cpp
-// SomeFile.cpp
-
+```cpp:SomeFile.cpp
 namespace MyCCmds
 {
     static FAutoConsoleCommandWithWorld ConsoleCommandWithWorld(
@@ -74,9 +70,7 @@ namespace MyCCmds
 
 ### Command Requires Just the Arguments List
 
-```cpp
-// SomeFile.cpp
-
+```cpp:SomeFile.cpp
 namespace MyCCmds
 {
     static void MyCallback(const TArray<FString>& Args)
@@ -95,9 +89,7 @@ namespace MyCCmds
 
 ### Command Doesn't Require Current World Context or Arguments List 
 
-```cpp
-// SomeFile.cpp
-
+```cpp:SomeFile.cpp
 namespace MyCCmds
 {
     static FAutoConsoleCommand ConsoleCommand(
@@ -144,9 +136,7 @@ Console Variables are defined within a `.cpp` file, and usually inside a namespa
 - Bypass certain system features like thread safety, callbacks, and sinks;
 - Avoid automatic registration or system management.
 
-```cpp
-// SomeFile.cpp
-
+```cpp:SomeFile.cpp
 namespace MyCVars
 {
     /*
@@ -177,25 +167,19 @@ namespace MyCVars
 ## Accessing a Console Variable Within Its File Definition
 
 Access `TAutoConsoleVariable` value with:
-```cpp
-// SomeFile.cpp
-
+```cpp:SomeFile.cpp
 MyCVars::ExampleAutoConsoleVariable.GetValueOnGameThread()
 ```
 
 Access `FAutoConsoleVariableRef` value directly with (and also same as above):
-```cpp
-// SomeFile.cpp
-
+```cpp:SomeFile.cpp
 MyCVars::bDebugSomething
 ```
 
 ## Accessing a Console Variable Outside Its File Definition
 
 If you'd like to access the CVars outside of the file where they were defined, you can do the following:
-```cpp
-//  AnyOtherFile.cpp 
-
+```cpp:AnyOtherFile.cpp 
 #include "HAL/IConsoleManager.h"
  
 void UseCVar()
@@ -211,9 +195,7 @@ void UseCVar()
 
 Having to hardcode the CVar name isn't the best approach, so you can do a trick of declaring the CVar name as an `extern` variable in your `.h` and define it in the `.cpp`. Then you can use the name variable to declare/define the CVar and find it on the Console Manager. Here's an example:
 
-```cpp
-// SomeFile.h
-
+```cpp:SomeFile.h
 #pragma once
 
 namespace MyCVars
@@ -222,9 +204,7 @@ namespace MyCVars
 }
 ```
 
-```cpp
-//  SomeFile.cpp 
-
+```cpp:SomeFile.cpp 
 #include "SomeFile.h"
 
 namespace MyCVars
@@ -242,9 +222,7 @@ namespace MyCVars
 ```
 
 Now, in any another `.cpp` file, include the header and access the CVar as such:
-```cpp
-//  AnyOtherFile.cpp 
-
+```cpp:AnyOtherFile.cpp 
 #include "SomeFile.h"
 
 void UseCVar()
@@ -270,7 +248,7 @@ MyProject.MyExampleAutoConsoleVariable 42
 
 You can also override your CVars default values by adding them your `DefaultEngine.ini` file:
 
-```ini
+```ini:DefaultEngine.ini
 [ConsoleVariables]
 MyProject.MyExampleAutoConsoleVariable=42
 ```
@@ -280,9 +258,7 @@ MyProject.MyExampleAutoConsoleVariable=42
 You can listen to your CVar changes by subscribing to their delegate.
 
 In case you're in the file where your CVar has been created:
-```cpp
-// SomeFile.cpp
-
+```cpp:SomeFile.cpp
 void AMyActor::BeginPlay()
 {
     MyCVars::ExampleAutoConsoleVariable->OnChangedDelegate().AddWeakLambda(
@@ -300,9 +276,7 @@ void AMyActor::BeginPlay()
 ```
 
 In case you're in a different one:
-```cpp
-// AnyOtherFile.cpp
-
+```cpp:AnyOtherFile.cpp
 void AAnotherActor::BeginPlay()
 {
     static IConsoleVariable* ExampleAutoConsoleVariable = IConsoleManager::Get().FindConsoleVariable(MyCVars::ExampleAutoConsoleVariableName);

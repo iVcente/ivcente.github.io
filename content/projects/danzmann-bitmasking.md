@@ -36,9 +36,7 @@ More info on enums can be found on [Enums: What They Are, Where They Live, and H
 > [!NOTE] Make sure you have added the `DanzmannBitmasking` module to your project's `Build.cs` file.
 
 Create an enum that supports bitmasking:
-```cpp
-// ElementalTrait.h
-
+```cpp:ElementalTrait.h
 #pragma once
 
 #include "ElementalTrait.generated.h"
@@ -61,8 +59,7 @@ ENUM_RANGE_BY_FIRST_AND_LAST(EElementalTrait, EElementalTrait::None, EElementalT
 ```
 
 Now, let's create an example Actor that'll make use of the enum and the plugin functions:
-```cpp
-// ExampleActor.h
+```cpp:ExampleActor.h
 
 #pragma once
 
