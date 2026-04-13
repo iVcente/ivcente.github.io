@@ -4,7 +4,7 @@ date: "2026-03-31"
 summary: "ExoGP is a racing game where players customize their exoskeletons to race and battle against others."
 tags: ["C++", "Unreal Engine"]
 type: "Game"
-cover: "/images/projects/exogp.jpg"
+cover: "/images/projects/exogp/exogp.jpg"
 company: "Big Moxi Games"
 companyWebsite: "https://bigmoxigames.com/"
 teamSize: "40"
