@@ -4,7 +4,7 @@ date: "2020-11-15"
 summary: "A college project to learn C++ and OpenGL. Play as a tank and destroy enemies on the other side of a barrier."
 tags: ["C++", "OpenGL"]
 type: "Sandbox"
-cover: "/images/projects/tankz.jpg"
+cover: "/images/projects/tankz/tankz.jpg"
 company: ""
 companyWebsite: ""
 teamSize: ""
