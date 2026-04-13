@@ -2,8 +2,8 @@ import ReactMarkdown, { type Components } from "react-markdown";
 import rehypeHighlight from "rehype-highlight";
 import rehypeRaw from "rehype-raw";
 import "highlight.js/styles/tokyo-night-dark.css";
-import { AlertTriangle, Info, Lightbulb, Flame, MessageSquare } from "lucide-react";
-import type { ReactNode } from "react";
+import { AlertTriangle, Info, Lightbulb, Flame, MessageSquare, Copy, Check } from "lucide-react";
+import { type ReactNode, useState, useCallback } from "react";
 
 const CALLOUT_REGEX = /^\[!(NOTE|TIP|WARNING|CAUTION|COMMENT)\]\s*/i;
 
@@ -39,6 +39,56 @@ const calloutConfig: Record<string, { icon: ReactNode; border: string; bg: strin
         title: "Comment",
     },
 };
+
+type RehypeNode = {
+    type?: string;
+    tagName?: string;
+    properties?: Record<string, unknown>;
+    children?: RehypeNode[];
+};
+
+type CodeBlockProps = React.HTMLAttributes<HTMLElement> & {
+    children?: ReactNode;
+    node?: unknown;
+    inline?: boolean;
+    "data-code-title"?: string;
+};
+
+function normalizeCodeBlockMetadata() {
+    return (tree: RehypeNode) => {
+        const visit = (node: RehypeNode) => {
+            if (node.type === "element" && node.tagName === "code") {
+                const rawClassName = node.properties?.className;
+                const classNames = Array.isArray(rawClassName)
+                    ? rawClassName.map(String)
+                    : typeof rawClassName === "string"
+                        ? rawClassName.split(/\s+/).filter(Boolean)
+                        : [];
+                const titledLanguageClass = classNames.find(
+                    (value) => value.startsWith("language-") && value.includes(":")
+                );
+
+                if (titledLanguageClass) {
+                    const match = /^language-([\w-]+):(.+)$/.exec(titledLanguageClass);
+                    if (match) {
+                        const [, lang, title] = match;
+                        node.properties = {
+                            ...node.properties,
+                            className: classNames.map((value) =>
+                                value === titledLanguageClass ? `language-${lang}` : value
+                            ),
+                            "data-code-title": title,
+                        };
+                    }
+                }
+            }
+
+            node.children?.forEach(visit);
+        };
+
+        visit(tree);
+    };
+}
 
 function extractCalloutType(children: ReactNode): { type: string; content: ReactNode } | null {
     if (!Array.isArray(children)) return null;
@@ -82,6 +132,58 @@ function extractText(node: ReactNode): string {
     return "";
 }
 
+function CodeBlock({
+    className,
+    children,
+    node: _node,
+    inline: _inline,
+    ...props
+}: CodeBlockProps) {
+    const [copied, setCopied] = useState(false);
+    const { ["data-code-title"]: titleFromProps, ...codeProps } = props;
+    const normalizedClassName = (className || "").replace(/language-([\w-]+):(.+)/, "language-$1");
+    const match = /language-([\w-]+)/.exec(normalizedClassName);
+    const isBlock = match !== null;
+
+    const handleCopy = useCallback(() => {
+        const text = extractText(children);
+        navigator.clipboard.writeText(text);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+    }, [children]);
+
+    if (!isBlock) {
+        return <code className={className} {...codeProps}>{children}</code>;
+    }
+
+    const lang = match![1];
+    const title = titleFromProps ?? /language-[\w-]+:(.+)/.exec(className || "")?.[1];
+
+    return (
+        <div className="relative group">
+            <div className="flex items-center justify-between px-4 py-2 bg-[hsl(220_20%_12%)] border-b border-border/50 rounded-t-lg">
+                <div className="flex items-center gap-2">
+                    <span className="text-xs font-mono text-muted-foreground uppercase tracking-wider">{lang}</span>
+                    {title && (
+                        <>
+                            <span className="text-muted-foreground/30">·</span>
+                            <span className="text-xs font-mono text-foreground/70">{title}</span>
+                        </>
+                    )}
+                </div>
+                <button
+                    onClick={handleCopy}
+                    className="text-muted-foreground hover:text-foreground transition-colors p-1 rounded"
+                    aria-label="Copy code"
+                >
+                    {copied ? <Check size={14} className="text-green-400" /> : <Copy size={14} />}
+                </button>
+            </div>
+            <code className={normalizedClassName} {...codeProps}>{children}</code>
+        </div>
+    );
+}
+
 const components: Components = {
     h1: ({ children, ...props }) => {
         const id = slugify(extractText(children as ReactNode));
@@ -95,11 +197,12 @@ const components: Components = {
         const id = slugify(extractText(children as ReactNode));
         return <h3 id={id} {...props}>{children}</h3>;
     },
+    code: (props) => <CodeBlock {...props} />,
     iframe: ({ ...props }) => (
         <iframe
             {...props}
             className="w-full rounded-lg border border-border"
-            style={{ height: "300px", ...((props as Record<string, unknown>).style as object) }}
+            style={{ height: "500px", ...((props as Record<string, unknown>).style as object) }}
         />
     ),
     blockquote: ({ children, ...props }) => {
@@ -131,7 +234,7 @@ interface MarkdownRendererProps {
 
 const MarkdownRenderer = ({ content, className }: MarkdownRendererProps) => (
     <div className={className}>
-        <ReactMarkdown rehypePlugins={[rehypeRaw, rehypeHighlight]} components={components}>
+        <ReactMarkdown rehypePlugins={[rehypeRaw, normalizeCodeBlockMetadata, rehypeHighlight]} components={components}>
             {content}
         </ReactMarkdown>
     </div>
