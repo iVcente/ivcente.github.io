@@ -33,13 +33,15 @@ UPROPERTY()
 EThing MyProperty;
 ```
 
-> [!WARNING] While C++ enums can be of any size, enums exposed to Blueprint must continue to be based on `uint8`.
+> [!NOTE] While C++ enums can be of any size, enums exposed to Blueprint must continue to be based on `uint8`.
 
 ---
 
 # Creating a Bitmask and Setting Up Bitwise Operations
 
 Basically, bitmask enums are a way of organizing a collection of flags or states. Think of it as a collection of booleans where you don't have to keep track of a dozen of different variables, they can be bundled up together in just a single one. They're fast and compact, so for network optimization is a big plus.
+
+## C++
 
 The amount of different states you can store inside of one integer depends on its memory size -- e.g., a 32 bit integer could hold 32 different states at once, one bit to represent each state. Use the `ENUM_CLASS_FLAGS(EnumType)` macro to automatically define all the bitwise operators, so we can check and set values for the states.
 
@@ -51,14 +53,17 @@ Creating an enum for a bitmask requires keeping a few things in mind:
 
 Putting it all together, it should look like this:
 ```cpp
-// ExampleEnum.h
+// ElementalTrait.h
 
 #pragma once
 
-#include "ExampleEnum.generated.h"
+#include "ElementalTrait.generated.h"
 
+/**
+ * Example enum that using bitmasks can be useful.
+ */
 UENUM(BlueprintType, Meta = (Bitflags, UseEnumValuesAsMaskValuesInEditor = true))
-enum class EExampleEnum : uint8
+enum class EElementalTrait : uint8
 {
     None      = 0 UMETA(Hidden), // 0x00
     Fire      = 1,               // 0x01 // 1 << 0
@@ -67,41 +72,54 @@ enum class EExampleEnum : uint8
     Poison    = 8                // 0x08 // 1 << 3
 };
 
-ENUM_CLASS_FLAGS(EExampleEnum)
-
-// MyActor.cpp
-
-UPROPERTY(BlueprintReadWrite, Meta = (Bitmask, BitmaskEnum = "/Script/MyModuleName.EExampleEnum"))
-int32 Debuffs = 0;
+ENUM_CLASS_FLAGS(EElementalTrait)
 ```
 
-> [!NOTE] If you'd like to create the bitmask variable `Debuffs` directly on Blueprint, rather than creating the variable as the enum itself (`EExampleEnum`), you first create it as an integer, mark it as a `Bitmask`, then select its enum type from the details panel.
+Create an integer variable to hold your bitmask:
+```cpp
+// MyActor.cpp
+
+// These UPROPERTY specifiers make the variable more intuitive for BP usage
+UPROPERTY(BlueprintReadWrite, Meta = (Bitmask, BitmaskEnum = "/Script/MyModuleName.EElementalTrait"))
+int32 ElementalTraits = 0;
+```
 
 Performing bitwise operations -- adding/setting, removing/unsetting, flipping, checking set values -- is fairly simple:
 ```cpp
 // Add/set flags
-Debuffs |= (static_cast<int32>(EExampleEnum::Fire | EExampleEnum::Lightning));
+ElementalTraits |= (static_cast<int32>(EElementalTrait::Fire | EElementalTrait::Lightning));
 
 // Remove/unset flags
-Debuffs &= ~(static_cast<int32>(EExampleEnum::Fire));
+ElementalTraits &= ~(static_cast<int32>(EElementalTrait::Fire));
 
 // Flip flags
-Debuffs ^= (static_cast<int32>(EExampleEnum::Lightning));
+ElementalTraits ^= (static_cast<int32>(EElementalTrait::Lightning));
 
 // Has all flags added/set?
-EnumHasAllFlags(static_cast<TEnum>(Debuffs), EExampleEnum::Fire | EExampleEnum::Lightning);
+EnumHasAllFlags(static_cast<TEnum>(ElementalTraits), EElementalTrait::Fire | EElementalTrait::Lightning);
 
 // Has any of the flags added/set?
-EnumHasAnyFlags(static_cast<TEnum>(Debuffs), EExampleEnum::Fire | EExampleEnum::Lightning | EExampleEnum::Poison);
+EnumHasAnyFlags(static_cast<TEnum>(ElementalTraits), EElementalTrait::Fire | EElementalTrait::Lightning | EElementalTrait::Poison);
 ```
 
-I wrote a plugin named [DanzmannBitmasking](https://danzmann.dev/#/projects/danzmann-bitmasking) with a few helpers -- for C++ and BP -- to abstract these operations.
+## BP
+
+Create an enum that supports bitmasking by checking `Bitmask Flags`:
+![BP Enum Bitmask Flags](images/projects/enums-what-whey-are-where-they-live-and-how-to-use-them/bp-enum-bitmask-flags.jpg "BP Enum Bitmask Flags")
+
+Create an integer variable to store your flags. Then, check `Bitmask` and set the just created enum in `Bitmask Enum`:
+![BP Integer Bitmask](images/projects/enums-what-whey-are-where-they-live-and-how-to-use-them/bp-integer-bitmask.jpg "BP Integer Bitmask")
+
+Then just use the equivalent BP functions to perform the same operations listed above for C++ -- and use the node `Make Bitmask` to make your life easier:
+![BP Functions](images/projects/enums-what-whey-are-where-they-live-and-how-to-use-them/bp-bitmask-operations.jpg "BP Functions")
+
+> [!TIP] I wrote a plugin named [DanzmannBitmasking](https://danzmann.dev/#/projects/danzmann-bitmasking) with a few helpers -- for C++ and BP -- to abstract these operations.
 
 ---
 
 # Iterating Over Enum Values
 
-Unreal provides three equivalent macros that allow iterating over the values of an enum:
+Exclusive to C++, Unreal provides three equivalent macros that allow iterating over the values of an enum:
 
 ## ENUM_RANGE_BY_COUNT
 
@@ -159,7 +177,7 @@ No matter which macro's been chosen, iterating through the values of an enum is
 ```cpp
 for (EAnimal Animal : TEnumRange<EAnimal>())
 {
-
+	// Do something...
 }
 ```
 
@@ -172,7 +190,7 @@ Here are more helpers for when dealing with enums:
 ## Get Enum Value as a String
 
 ```cpp
-UEnum::GetValueAsString(EExampleEnum::Fire);
+UEnum::GetValueAsString(EElementalTrait::Fire);
 ```
 
 ## Conversions between enums and integers
@@ -180,10 +198,10 @@ UEnum::GetValueAsString(EExampleEnum::Fire);
 Remember that enums are just disguised integers, so you can take advantage of that on converting one to another:
 ```cpp
 // Enum to integer
-static_cast<uint8>(EExampleEnum::Fire);
+static_cast<uint8>(EElementalTrait::Fire);
 
 // Integer to enum
-static_cast<EExampleEnum>(Debuffs);
+static_cast<EElementalTrait>(ElementalTraits);
 ```
 ---
 
