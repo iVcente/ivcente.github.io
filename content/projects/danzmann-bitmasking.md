@@ -125,10 +125,10 @@ class MYPROJECT_API AExampleActor : public AActor
 ## BP
 
 Create an enum that supports bitmasking by checking `Bitmask Flags`:
-![BP Enum Bitmask Flags](images/projects/danzmann-bitmasking/bp-enum-bitmask-flags.jpg "BP Enum Bitmask Flags")
+![BP Enum Bitmask Flags](/images/projects/danzmann-bitmasking/bp-enum-bitmask-flags.jpg "BP Enum Bitmask Flags")
 
 Create an integer variable to store your flags. Then, check `Bitmask` and set the just created enum in `Bitmask Enum`:
-![BP Integer Bitmask](images/projects/danzmann-bitmasking/bp-integer-bitmask.jpg "BP Integer Bitmask")
+![BP Integer Bitmask](/images/projects/danzmann-bitmasking/bp-integer-bitmask.jpg "BP Integer Bitmask")
 
 Then just use the plugin functions, and use the node Make Bitmask to make your life easier:
-![BP Functions](images/projects/danzmann-bitmasking/bp-functions.jpg "BP Functions")
+![BP Functions](/images/projects/danzmann-bitmasking/bp-functions.jpg "BP Functions")
