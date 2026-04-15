@@ -145,7 +145,7 @@ Following our example class, to allow the Asset Manager to successfully scan our
 - Asset Base Class: `UMyCustomPrimaryDataAsset` -- but `UPrimaryDataAsset` would work too;
 - Directories: directory where to scan for the `UMyCustomPrimaryDataAssets`.
 
-![Asset Manager Settings to Load Primary Asset](images/posts/asynchronously-loadings-assets-and-introduction-to-asset-manager/asset-manager-settings.jpg "Asset Manager Settings to Load Primary Asset")
+![Asset Manager Settings to Load Primary Asset](/images/posts/asynchronously-loadings-assets-and-introduction-to-asset-manager/asset-manager-settings.jpg "Asset Manager Settings to Load Primary Asset")
 
 To check if your setup is correct you can use the following commands:
 - `AssetManager.DumpAssetDependencies`;
