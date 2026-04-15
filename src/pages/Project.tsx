@@ -195,16 +195,7 @@ const Project = () => {
                     </div>
 
                     {/* Content */}
-                    <article className="
-                        prose prose-invert prose-sm max-w-none
-                        prose-headings:font-mono prose-headings:text-foreground
-                        prose-p:text-muted-foreground prose-p:leading-relaxed
-                        prose-a:text-primary prose-a:no-underline hover:prose-a:underline
-                        prose-strong:text-foreground
-                        prose-code:text-primary prose-code:bg-secondary prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm
-                        prose-pre:bg-card prose-pre:border prose-pre:border-border
-                        prose-li:text-muted-foreground
-                    ">
+                    <article className="prose prose-invert prose-sm max-w-none prose-headings:font-mono prose-headings:text-foreground prose-p:text-muted-foreground prose-p:leading-relaxed prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-strong:text-foreground prose-code:text-primary prose-code:bg-secondary prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-code:before:content-none prose-code:after:content-none prose-pre:bg-card prose-pre:border prose-pre:border-border prose-li:text-muted-foreground">
                         <MarkdownRenderer content={project.content} />
                     </article>
                 </motion.div>
