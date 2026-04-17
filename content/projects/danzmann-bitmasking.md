@@ -17,6 +17,8 @@ video: ""
 videoDescription: ""
 ---
 
+# Introduction
+
 A plugin that simplifies bitmasks usage in C++ and Blueprints by providing generic functions to most common operations.
 The following functions are available:
 - `AddFlags()`;
