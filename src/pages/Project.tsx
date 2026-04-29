@@ -2,7 +2,7 @@ import { useParams, Link, Navigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { useRef } from "react";
-import { ArrowLeft, Calendar, ExternalLink, Users, Clock, Monitor, Play } from "lucide-react";
+import { ArrowLeft, Calendar, ExternalLink, Users, Clock, Play } from "lucide-react";
 import { FaRegBuilding, FaGithub, FaSteam } from "react-icons/fa";
 import { SiEpicgames } from "react-icons/si";
 import Navbar from "@/components/Navbar";

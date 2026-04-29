@@ -4,6 +4,7 @@ import rehypeRaw from "rehype-raw";
 import "highlight.js/styles/tokyo-night-dark.css";
 import { AlertTriangle, Info, Lightbulb, Flame, MessageSquare, Copy, Check } from "lucide-react";
 import { type ReactNode, useState, useCallback } from "react";
+import { slugify } from "@/lib/markdown";
 
 const CALLOUT_REGEX = /^\[!(NOTE|TIP|WARNING|CAUTION|COMMENT)\]\s*/i;
 
@@ -115,13 +116,6 @@ function extractCalloutType(children: ReactNode): { type: string; content: React
         }
     }
     return null;
-}
-
-function slugify(text: string): string {
-    return text
-        .toLowerCase()
-        .replace(/[^\w\s-]/g, "")
-        .replace(/\s+/g, "-");
 }
 
 function extractText(node: ReactNode): string {

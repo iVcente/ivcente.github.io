@@ -1,6 +1,6 @@
-import { useMemo, useState, useEffect, useRef } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { extractHeadings, type TocEntry } from "./TableOfContents";
+import { extractHeadings } from "@/lib/markdown";
 
 interface FloatingTocProps {
   content: string;

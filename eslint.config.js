@@ -20,7 +20,19 @@ export default tseslint.config(
         rules: {
             ...reactHooks.configs.recommended.rules,
             "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
-            "@typescript-eslint/no-unused-vars": "off",
+            "@typescript-eslint/no-unused-vars": [
+                "error",
+                { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
+            ],
+        },
+    },
+    {
+        extends: [js.configs.recommended],
+        files: ["scripts/**/*.{js,mjs}"],
+        languageOptions: {
+            ecmaVersion: 2022,
+            sourceType: "module",
+            globals: globals.node,
         },
     },
 );
