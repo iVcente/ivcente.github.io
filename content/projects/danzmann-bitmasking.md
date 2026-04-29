@@ -27,7 +27,7 @@ The following functions are available:
 - `HasAllFlags()`;
 - `HasAnyFlags()`.
 
-More info on enums can be found on [Enums: What They Are, Where They Live, and How to Use Them](http://danzmann.dev/#/posts/enums-what-whey-are-where-they-live-and-how-to-use-them).
+More info on enums can be found on [Enums: What They Are, Where They Live, and How to Use Them](http://danzmann.dev/#/posts/enums-what-they-are-where-they-live-and-how-to-use-them).
 
 ---
 
