@@ -7,8 +7,10 @@ export interface TocEntry {
 export function slugify(text: string): string {
     return text
         .toLowerCase()
+        .replace(/_/g, "-")
         .replace(/[^\w\s-]/g, "")
-        .replace(/\s+/g, "-");
+        .replace(/[\s-]+/g, "-")
+        .replace(/^-|-$/g, "");
 }
 
 export function extractHeadings(markdown: string): TocEntry[] {
@@ -24,7 +26,7 @@ export function extractHeadings(markdown: string): TocEntry[] {
         const match = line.match(/^(#{1,3})\s+(.+)$/);
         if (match) {
             const level = match[1].length;
-            const text = match[2].replace(/[*_`~]/g, "").trim();
+            const text = match[2].replace(/[*`~]/g, "").trim();
             entries.push({ level, text, id: slugify(text) });
         }
     }

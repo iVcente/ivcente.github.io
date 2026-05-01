@@ -60,30 +60,32 @@ const FloatingToc = ({ content, tocRef }: FloatingTocProps) => {
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: 20 }}
           transition={{ duration: 0.3 }}
-          className="fixed right-6 top-1/2 -translate-y-1/2 z-40 hidden xl:block max-w-[180px]"
+          className="fixed right-6 top-16 bottom-0 z-40 hidden xl:flex items-center"
         >
-          <ul className="space-y-1 border-l border-border pl-3">
-            {headings.map((h) => (
-              <li
-                key={h.id}
-                style={{ paddingLeft: `${(h.level - minLevel) * 8}px` }}
-              >
-                <button
-                  onClick={() => {
-                    const el = document.getElementById(h.id);
-                    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-                  }}
-                  className={`block text-left text-xs font-mono py-0.5 transition-colors truncate max-w-full ${
-                    activeId === h.id
-                      ? "text-primary"
-                      : "text-muted-foreground hover:text-foreground"
-                  }`}
+          <div className="max-h-[80vh] overflow-y-auto max-w-[180px]">
+            <ul className="space-y-1 border-l border-border pl-3">
+              {headings.map((h) => (
+                <li
+                  key={h.id}
+                  style={{ paddingLeft: `${(h.level - minLevel) * 8}px` }}
                 >
-                  {h.text}
-                </button>
-              </li>
-            ))}
-          </ul>
+                  <button
+                    onClick={() => {
+                      const el = document.getElementById(h.id);
+                      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+                    }}
+                    className={`block text-left text-xs font-mono py-0.5 transition-colors truncate max-w-full ${
+                      activeId === h.id
+                        ? "text-primary"
+                        : "text-muted-foreground hover:text-foreground"
+                    }`}
+                  >
+                    {h.text}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
         </motion.nav>
       )}
     </AnimatePresence>
