@@ -98,13 +98,13 @@ EnumHasAnyFlags(static_cast<TEnum>(ElementalTraits), EElementalTrait::Fire | EEl
 ## BP
 
 Create an enum that supports bitmasking by checking `Bitmask Flags`:
-![BP Enum Bitmask Flags](/images/projects/enums-what-they-are-where-they-live-and-how-to-use-them/bp-enum-bitmask-flags.jpg "BP Enum Bitmask Flags")
+![BP Enum Bitmask Flags](/images/posts/enums-what-they-are-where-they-live-and-how-to-use-them/bp-enum-bitmask-flags.jpg "BP Enum Bitmask Flags")
 
 Create an integer variable to store your flags. Then, check `Bitmask` and set the just created enum in `Bitmask Enum`:
-![BP Integer Bitmask](/images/projects/enums-what-they-are-where-they-live-and-how-to-use-them/bp-integer-bitmask.jpg "BP Integer Bitmask")
+![BP Integer Bitmask](/images/posts/enums-what-they-are-where-they-live-and-how-to-use-them/bp-integer-bitmask.jpg "BP Integer Bitmask")
 
 Then just use the equivalent BP functions to perform the same operations listed above for C++ -- and use the node `Make Bitmask` to make your life easier:
-![BP Functions](/images/projects/enums-what-they-are-where-they-live-and-how-to-use-them/bp-bitmask-operations.jpg "BP Functions")
+![BP Functions](/images/posts/enums-what-they-are-where-they-live-and-how-to-use-them/bp-bitmask-operations.jpg "BP Functions")
 
 > [!TIP] I wrote a plugin named [DanzmannBitmasking](https://danzmann.dev/projects/danzmann-bitmasking) with a few helpers -- for C++ and BP -- to abstract these operations.
 
