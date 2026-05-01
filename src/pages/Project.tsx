@@ -45,7 +45,25 @@ const Project = () => {
                 <meta name="twitter:image" content={project.cover} />
             </Helmet>
             <Navbar />
-            <main className="container px-6 pt-28 pb-24">
+
+            {/* Full-width cover */}
+            {project.cover && (
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.5 }}
+                    className="relative overflow-hidden mt-16 h-64 md:h-80"
+                >
+                    <img
+                        src={project.cover}
+                        alt={project.title}
+                        className="w-full h-full object-cover object-top"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
+                </motion.div>
+            )}
+
+            <main className={`container px-6 pb-24 max-w-3xl ${project.cover ? "pt-10" : "pt-28"}`}>
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -54,18 +72,6 @@ const Project = () => {
                     <Link to="/projects" className="inline-flex items-center gap-2 text-sm font-mono text-muted-foreground hover:text-primary transition-colors mb-8">
                         <ArrowLeft size={14} /> Back to Projects
                     </Link>
-
-                    {/* Cover */}
-                    {project.cover && (
-                        <div className="relative rounded-lg overflow-hidden mb-8 h-64 md:h-80">
-                            <img
-                                src={project.cover}
-                                alt={project.title}
-                                className="w-full h-full object-cover object-top"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
-                        </div>
-                    )}
 
                     {/* Title */}
                     <h1 className="text-3xl md:text-4xl font-mono font-bold text-foreground mb-4">{project.title}</h1>
