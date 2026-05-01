@@ -210,7 +210,7 @@ const components: Components = {
                             {config.icon}
                             {config.title}
                         </div>
-                        <div className="text-sm text-muted-foreground [&>p]:m-0 [&_code]:text-primary [&_code]:bg-secondary [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:rounded [&_code]:text-sm">
+                        <div className="text-sm text-muted-foreground [&>p]:m-0 [&_code]:text-primary [&_code]:bg-secondary [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:rounded [&_code]:text-sm [&_a]:text-primary [&_a]:no-underline [&_a:hover]:underline">
                             {callout.content}
                         </div>
                     </div>
