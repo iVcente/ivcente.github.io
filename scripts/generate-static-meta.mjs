@@ -64,6 +64,12 @@ writePage("posts", {
     image: FALLBACK_IMAGE,
 });
 
+writePage("colophon", {
+    title: "Danzmann.dev | Colophon",
+    description: "What this site is built from, and credit for the parts I didn't build.",
+    image: FALLBACK_IMAGE,
+});
+
 for (const { slug, data } of readMarkdownDir(path.join(CONTENT, "projects"))) {
     const cover = typeof data.cover === "string" ? data.cover : "";
     writePage(`projects/${slug}`, {

@@ -8,6 +8,7 @@ const Posts = lazy(() => import("./pages/Posts"));
 const Post = lazy(() => import("./pages/Post"));
 const Projects = lazy(() => import("./pages/Projects"));
 const Project = lazy(() => import("./pages/Project"));
+const Colophon = lazy(() => import("./pages/Colophon"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const App = () => (
@@ -19,6 +20,7 @@ const App = () => (
                 <Route path="/posts/:slug" element={<Post />} />
                 <Route path="/projects" element={<Projects />} />
                 <Route path="/projects/:slug" element={<Project />} />
+                <Route path="/colophon" element={<Colophon />} />
                 <Route path="*" element={<NotFound />} />
             </Routes>
         </Suspense>
