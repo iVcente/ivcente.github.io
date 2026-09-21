@@ -4,7 +4,7 @@ import rehypeRaw from "rehype-raw";
 import "highlight.js/styles/tokyo-night-dark.css";
 import { AlertTriangle, Info, Lightbulb, Flame, MessageSquare, Copy, Check } from "lucide-react";
 import { type ReactNode, useState, useCallback } from "react";
-import { slugify } from "@/lib/markdown";
+import { slugify, stripUnnumberedMarker, UNNUMBERED_MARKER } from "@/lib/markdown";
 
 const CALLOUT_REGEX = /^\[!(NOTE|TIP|WARNING|CAUTION|COMMENT)\]\s*/i;
 
@@ -178,19 +178,41 @@ function CodeBlock({
     );
 }
 
+function stripMarkerFromChildren(children: ReactNode): ReactNode {
+    if (typeof children === "string") return children.replace(UNNUMBERED_MARKER, "");
+    if (Array.isArray(children)) {
+        const next = [...children];
+        for (let i = next.length - 1; i >= 0; i -= 1) {
+            if (typeof next[i] === "string") {
+                next[i] = (next[i] as string).replace(UNNUMBERED_MARKER, "");
+                break;
+            }
+        }
+        return next;
+    }
+    return children;
+}
+
+function heading(Tag: "h1" | "h2" | "h3") {
+    return ({ children, className, ...props }: React.HTMLAttributes<HTMLHeadingElement> & { node?: unknown }) => {
+        const { text, unnumbered } = stripUnnumberedMarker(extractText(children as ReactNode));
+        const { node: _node, ...rest } = props;
+        return (
+            <Tag
+                id={slugify(text)}
+                className={[className, unnumbered ? "unnumbered" : ""].filter(Boolean).join(" ") || undefined}
+                {...rest}
+            >
+                {unnumbered ? stripMarkerFromChildren(children as ReactNode) : children}
+            </Tag>
+        );
+    };
+}
+
 const components: Components = {
-    h1: ({ children, ...props }) => {
-        const id = slugify(extractText(children as ReactNode));
-        return <h1 id={id} {...props}>{children}</h1>;
-    },
-    h2: ({ children, ...props }) => {
-        const id = slugify(extractText(children as ReactNode));
-        return <h2 id={id} {...props}>{children}</h2>;
-    },
-    h3: ({ children, ...props }) => {
-        const id = slugify(extractText(children as ReactNode));
-        return <h3 id={id} {...props}>{children}</h3>;
-    },
+    h1: heading("h1"),
+    h2: heading("h2"),
+    h3: heading("h3"),
     code: (props) => <CodeBlock {...props} />,
     iframe: ({ ...props }) => (
         <iframe
@@ -224,10 +246,12 @@ const components: Components = {
 interface MarkdownRendererProps {
     content: string;
     className?: string;
+    /** Auto-number h1/h2/h3 as "1.", "1.1.", "1.1.1." via CSS counters. */
+    numbered?: boolean;
 }
 
-const MarkdownRenderer = ({ content, className }: MarkdownRendererProps) => (
-    <div className={className}>
+const MarkdownRenderer = ({ content, className, numbered }: MarkdownRendererProps) => (
+    <div className={[className, numbered ? "md-numbered" : ""].filter(Boolean).join(" ") || undefined}>
         <ReactMarkdown rehypePlugins={[rehypeRaw, normalizeCodeBlockMetadata, rehypeHighlight]} components={components}>
             {content}
         </ReactMarkdown>

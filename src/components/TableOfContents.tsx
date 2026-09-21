@@ -1,15 +1,19 @@
 import { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { List, ChevronDown } from "lucide-react";
-import { extractHeadings } from "@/lib/markdown";
+import { extractHeadings, numberHeadings } from "@/lib/markdown";
 
 interface TableOfContentsProps {
     content: string;
     className?: string;
+    numbered?: boolean;
 }
 
-const TableOfContents = ({ content, className = "" }: TableOfContentsProps) => {
-    const headings = useMemo(() => extractHeadings(content), [content]);
+const TableOfContents = ({ content, className = "", numbered }: TableOfContentsProps) => {
+    const headings = useMemo(() => {
+        const entries = extractHeadings(content);
+        return numbered ? numberHeadings(entries) : entries;
+    }, [content, numbered]);
     const [open, setOpen] = useState(false);
 
     if (headings.length < 2) return null;
@@ -53,7 +57,7 @@ const TableOfContents = ({ content, className = "" }: TableOfContentsProps) => {
                                         }}
                                         className="block text-sm text-muted-foreground hover:text-primary transition-colors py-0.5 font-mono text-left"
                                     >
-                                        {h.text}
+                                        {h.number ? `${h.number} ` : ""}{h.text}
                                     </button>
                                 </li>
                             ))}

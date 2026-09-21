@@ -59,15 +59,15 @@ const PostPage = () => {
                     </div>
 
                     <div ref={tableOfContentsRef}>
-                        <TableOfContents content={post.content} className="mb-8" />
+                        <TableOfContents content={post.content} className="mb-8" numbered={post.numbered} />
                     </div>
 
                     <article className="prose prose-invert prose-headings:font-mono prose-headings:text-foreground prose-p:text-muted-foreground prose-a:text-primary prose-strong:text-foreground prose-code:text-primary prose-code:bg-secondary prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:before:content-none prose-code:after:content-none prose-pre:bg-card prose-pre:border prose-pre:border-border max-w-none">
-                        <MarkdownRenderer content={post.content} />
+                        <MarkdownRenderer content={post.content} numbered={post.numbered} />
                     </article>
                 </motion.div>
             </main>
-            <FloatingTableOfContents content={post.content} tocRef={tableOfContentsRef} />
+            <FloatingTableOfContents content={post.content} tocRef={tableOfContentsRef} numbered={post.numbered} />
             <Footer />
         </div>
     );

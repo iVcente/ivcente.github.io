@@ -6,6 +6,7 @@ export interface Post {
     date: string;
     summary: string;
     tags: string[];
+    numbered: boolean;
     content: string;
 }
 
@@ -20,4 +21,5 @@ export const posts: Post[] = loadContent<Post>(postFiles, (data, slug) => ({
     date: (data.date as string) ?? "",
     summary: (data.summary as string) ?? "",
     tags: (data.tags as string[]) ?? [],
+    numbered: data.numbered === true || data.numbered === "true",
 }));

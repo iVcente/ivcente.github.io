@@ -47,8 +47,13 @@ title: "..."
 date: "YYYY-MM-DD"
 summary: "..."
 tags: ["Tag1", "Tag2"]
+numbered: true           # optional — auto-number h1/h2/h3
 ---
 ```
+
+With `numbered: true`, headings render as `1.`, `1.1.`, `1.1.1.` (CSS counters in
+`src/index.css`, mirrored in both tables of contents by `numberHeadings()` in
+`src/lib/markdown.ts`). A heading ending in `{-}` — `# Introduction {-}` — is skipped.
 
 ### Project frontmatter fields
 

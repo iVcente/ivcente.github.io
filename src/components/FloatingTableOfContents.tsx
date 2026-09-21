@@ -1,14 +1,18 @@
 import { useMemo, useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { extractHeadings } from "@/lib/markdown";
+import { extractHeadings, numberHeadings } from "@/lib/markdown";
 
 interface FloatingTocProps {
   content: string;
   tocRef?: React.RefObject<HTMLDivElement>;
+  numbered?: boolean;
 }
 
-const FloatingToc = ({ content, tocRef }: FloatingTocProps) => {
-  const headings = useMemo(() => extractHeadings(content), [content]);
+const FloatingToc = ({ content, tocRef, numbered }: FloatingTocProps) => {
+  const headings = useMemo(() => {
+    const entries = extractHeadings(content);
+    return numbered ? numberHeadings(entries) : entries;
+  }, [content, numbered]);
   const [activeId, setActiveId] = useState<string>("");
   const [visible, setVisible] = useState(false);
 
@@ -80,7 +84,7 @@ const FloatingToc = ({ content, tocRef }: FloatingTocProps) => {
                         : "text-muted-foreground hover:text-foreground"
                     }`}
                   >
-                    {h.text}
+                    {h.number ? `${h.number} ` : ""}{h.text}
                   </button>
                 </li>
               ))}
