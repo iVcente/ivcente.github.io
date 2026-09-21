@@ -24,11 +24,11 @@ const PostPage = () => {
                 <title>{post.title}</title>
                 <meta property="og:title" content={post.title} />
                 <meta property="og:description" content={post.summary} />
-                <meta property="og:image" content="/favicon.ico" />
+                <meta property="og:image" content="https://danzmann.dev/icon-512.png" />
                 <meta name="twitter:card" content="summary" />
                 <meta name="twitter:title" content={post.title} />
                 <meta name="twitter:description" content={post.summary} />
-                <meta name="twitter:image" content="/favicon.ico" />
+                <meta name="twitter:image" content="https://danzmann.dev/icon-512.png" />
             </Helmet>
             <Navbar />
             <main className="container px-6 pt-28 pb-24 max-w-3xl">

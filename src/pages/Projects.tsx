@@ -43,10 +43,10 @@ const Projects = () => {
                 <title>Projects</title>
                 <meta property="og:title" content="Danzmann.dev | Projects" />
                 <meta property="og:description" content="Gameplay Programmer building systems in C++ and Unreal Engine. Projects, technical insights, and explorations in game development and computer science." />
-                <meta property="og:image" content="/favicon.ico" />
+                <meta property="og:image" content="https://danzmann.dev/icon-512.png" />
                 <meta name="twitter:card" content="summary" />
                 <meta name="twitter:title" content="Danzmann.dev | Projects" />
-                <meta name="twitter:image" content="/favicon.ico" />
+                <meta name="twitter:image" content="https://danzmann.dev/icon-512.png" />
             </Helmet>
             <Navbar />
             <main className="container px-6 pt-28 pb-24">
