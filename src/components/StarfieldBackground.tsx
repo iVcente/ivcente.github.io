@@ -1,5 +1,7 @@
 import { useEffect, useRef } from "react";
 
+type Star = { x: number; y: number; size: number; opacity: number; speed: number; phase: number };
+
 const StarfieldBackground = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -12,37 +14,53 @@ const StarfieldBackground = () => {
 
     let animationId: number;
 
-    const stars: { x: number; y: number; size: number; opacity: number; speed: number; phase: number }[] = [];
+    const stars: Star[] = [];
+    let width = 0;
+    let height = 0;
 
-    const resize = () => {
-      canvas.width = canvas.offsetWidth * window.devicePixelRatio;
-      canvas.height = canvas.offsetHeight * window.devicePixelRatio;
-      ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
-    };
+    const makeStar = (w: number, h: number): Star => ({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      size: Math.random() * 2 + 0.5,
+      opacity: Math.random() * 0.4 + 0.1,
+      speed: Math.random() * 0.3 + 0.05,
+      phase: Math.random() * Math.PI * 2,
+    });
 
-    const init = () => {
-      resize();
-      stars.length = 0;
-      const w = canvas.offsetWidth;
-      const h = canvas.offsetHeight;
+    // Grow or shrink the field to match the current box instead of rebuilding it,
+    // so a late layout shift doesn't make the whole sky blink.
+    const syncStars = (w: number, h: number) => {
       const count = Math.floor((w * h) / 4000);
 
-      for (let i = 0; i < count; i++) {
-        stars.push({
-          x: Math.random() * w,
-          y: Math.random() * h,
-          size: Math.random() * 2 + 0.5,
-          opacity: Math.random() * 0.4 + 0.1,
-          speed: Math.random() * 0.3 + 0.05,
-          phase: Math.random() * Math.PI * 2,
-        });
+      if (stars.length > count) stars.length = count;
+      for (const star of stars) {
+        if (star.x > w) star.x = Math.random() * w;
+        if (star.y > h) star.y = Math.random() * h;
       }
+      while (stars.length < count) stars.push(makeStar(w, h));
+    };
+
+    const measure = () => {
+      const w = canvas.offsetWidth;
+      const h = canvas.offsetHeight;
+      if (w === 0 || h === 0) return;
+
+      const dpr = window.devicePixelRatio || 1;
+      width = w;
+      height = h;
+      canvas.width = Math.round(w * dpr);
+      canvas.height = Math.round(h * dpr);
+      // setTransform, not scale: scale compounds if the browser skips the
+      // implicit reset when the bitmap dimensions happen to be unchanged.
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+      syncStars(w, h);
     };
 
     let time = 0;
     const animate = () => {
-      const w = canvas.offsetWidth;
-      const h = canvas.offsetHeight;
+      const w = width;
+      const h = height;
       ctx.clearRect(0, 0, w, h);
       time += 0.01;
 
@@ -79,12 +97,20 @@ const StarfieldBackground = () => {
       animationId = requestAnimationFrame(animate);
     };
 
-    init();
+    measure();
     animate();
 
-    window.addEventListener("resize", init);
+    // The hero settles after mount (avatar load, font swap, entrance animation),
+    // so track the real box rather than measuring once and trusting it.
+    const observer = new ResizeObserver(measure);
+    observer.observe(canvas);
+
+    // A monitor change alters devicePixelRatio without changing the CSS box.
+    window.addEventListener("resize", measure);
+
     return () => {
-      window.removeEventListener("resize", init);
+      observer.disconnect();
+      window.removeEventListener("resize", measure);
       cancelAnimationFrame(animationId);
     };
   }, []);
