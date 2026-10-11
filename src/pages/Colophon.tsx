@@ -39,10 +39,10 @@ const Colophon = () => {
                 <title>Colophon</title>
                 <meta property="og:title" content="Danzmann.dev | Colophon" />
                 <meta property="og:description" content="What this site is built from, and credit for the parts I didn't build." />
-                <meta property="og:image" content="https://danzmann.dev/icon-512.png" />
+                <meta property="og:image" content="https://danzmann.dev/icon.png" />
                 <meta name="twitter:card" content="summary" />
                 <meta name="twitter:title" content="Danzmann.dev | Colophon" />
-                <meta name="twitter:image" content="https://danzmann.dev/icon-512.png" />
+                <meta name="twitter:image" content="https://danzmann.dev/icon.png" />
             </Helmet>
             <Navbar />
             <main className="container px-6 pt-28 pb-24 max-w-3xl">
@@ -79,9 +79,9 @@ const Colophon = () => {
                         </p>
                         <p>
                             I recolored it to{" "}
-                            <code className="font-mono text-primary">#33D0C4</code> on black and inset it inside a
-                            safe area, so the rounded masks that iOS and Android apply to home screen icons clip
-                            background instead of artwork.
+                            <code className="font-mono text-primary">#33D0C4</code> on near-black and inset it inside
+                            a circular safe area, so the rounded masks that iOS and Android apply to home screen icons
+                            clip background instead of artwork.
                         </p>
                     </Section>
 

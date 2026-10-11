@@ -11,7 +11,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DIST = path.resolve(__dirname, "../dist");
 const CONTENT = path.resolve(__dirname, "../content");
 const SITE_URL = "https://danzmann.dev";
-const FALLBACK_IMAGE = "/icon-512.png";
+const FALLBACK_IMAGE = "/icon.png";
 
 const template = fs.readFileSync(path.join(DIST, "index.html"), "utf-8");
 
