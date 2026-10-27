@@ -19,4 +19,4 @@ videoDescription: "Trailer"
 
 Fortnite is an online game made up of several modes, the best known of which is Battle Royale. In Battle Royale, up to 100 players, solo or in squads, parachute onto a large island and fight to be the last player or team standing. Players land empty-handed and scavenge for weapons, healing items, and other gear, while a storm closes in on the island in stages and forces the remaining players into a smaller area. Players can harvest materials from the environment to quickly build walls, ramps, and floors for cover and movement, although a Zero Build variant removes building entirely. Beyond Battle Royale, Fortnite includes LEGO Fortnite, a survival and crafting game; Fortnite Festival, a rhythm game played on popular songs; Rocket Racing, an arcade racing game; Save the World, a co-op PvE mode about defending against monster hordes; and thousands of player-made islands built with Creative mode and Unreal Editor for Fortnite (UEFN).
 
-I'm part of the Quest and Shooter Progression team.
+I'm part of the Shooter Progression team.
